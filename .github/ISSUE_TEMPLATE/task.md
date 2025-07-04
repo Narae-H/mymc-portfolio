@@ -9,10 +9,8 @@ assignees: NaraeH
 ## Description
 - Please describe the task in detail.
 
-## Acceptance Criteria
-- [ ] Criteria 1
-- [ ] Criteria 2
-- [ ] Criteria 3
+## Related Branch
+- feature/#issue-number-short-description (update when branch is created)
 
 ## Additional notes (If applicable)
 - Include any relevant information, links, or context.
