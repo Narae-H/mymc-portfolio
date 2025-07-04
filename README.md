@@ -25,6 +25,31 @@ Although I have not yet worked with Shopify Liquid or NestJS, this project refle
 
 # Folder Structure
 ```bash
+mymc-portfolio
+├── 📁 .github                         # GitHub-related documentation and templates
+│   ├── 📁 ISSUE_TEMPLATE              
+│   │   ├── 📄 bug_report.md
+│   │   ├── 📄 feature_request.md
+│   │   └── 📄 task.md
+│   ├── 📄 COMMIT_CONVENTION.md        
+│   └── 📄 PULL_REQUEST_TEMPLATE.md   
+│
+├── 📁 app                             # App directory for Next.js (App Router)
+│   ├── 📁 components                  # Reusable React components
+│   ├── 📁 styles                      # CSS Modules for component-level styling
+│   ├── 📄 global.css                  # Global styles
+│   ├── 📄 layout.tsx                  
+│   ├── 📄 page.module.css             
+│   └── 📄 page.tsx                    
+│
+├── 📁 lib                             # Utility functions (e.g. Shopify API)
+│   └── 📄 shopify.ts                  # Shopify Storefront API integration
+│
+├── 📁 models                          # Type definitions or interfaces 
+│
+├── 📁 public                          
+│
+└── 📄 .env.local                      # Environment variables for local development
 ```
 <br/>
 
