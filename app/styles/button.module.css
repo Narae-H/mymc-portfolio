@@ -1,0 +1,35 @@
+.button {
+  padding: 10px 16px;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-family: 'Inter';
+  font-weight:500;
+  cursor: pointer;
+  border: none;
+  padding: .5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-black {
+  background-color: var(--bg-black);
+  color:var(--color-white);
+  border: 1px solid var(--border-color);
+}
+
+.btn-red {
+  background-color: var(--bg-red);
+  color:var(--color-white);
+  border: none;
+}
+
+.btn-lime {
+  background-color: var(--bg-lime);
+  color:var(--color-white);
+  border: none;
+}
+
+.btn-purple {
+  background-color: var(--bg-purple);
+  color:var(--color-white);
+  border: none;
+}
