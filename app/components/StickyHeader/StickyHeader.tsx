@@ -1,15 +1,15 @@
-import styles from '../styles/header.module.css'
+import styles from './stickyHeader.module.css'
 
 import { BsChatLeftDotsFill } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
-import Button from './Button';
+import Button from '../Button/Button';
 
 
-export default function Header() {
+export default function StickyHeader() {
   return (
-    <header className={styles.header}>
+    <header className={styles.stickyWrapper}>
       <div className={`${styles.headerContainer} container`}>
         <a className={styles.headerLogo}>
           <img alt="logo" loading="lazy" decoding="async" data-nimg="1" src="https://www.datocms-assets.com/81001/1666837322-01_mymc_blk.svg"/>

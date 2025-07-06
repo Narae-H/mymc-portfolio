@@ -41,14 +41,16 @@
   --bg-pro: rgb(255, 230, 0);
   --bg-plus: rgb(37, 52, 60);
   --bg-serves: rgb(132, 132, 132);
-  --bg-plant-based: rgb(95, 161, 11);
+  --bg-soup: rgb(95, 161, 11);
   
   /* Text Colors */
   --color-black: rgb(0, 0, 0);
   --color-white: rgb(255, 255, 255);
   --color-red: rgb(255, 0, 53);
+  --color-darkgrey: rgb(37, 52, 60);
   --color-grey: rgb(132, 132, 132);
   --color-green: rgb(0, 138, 34);
+  --color-blue: rgb(0, 108, 237);
 
   /* Border Color */
   --border-color: rgb(229, 231, 235);
@@ -75,14 +77,14 @@ a {
 }
 
 /* Scroll bar */
-::-webkit-scrollbar {
+html::-webkit-scrollbar {
   background-color: transparent;
   width: 13px;
 }
-::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background: var(--bg-white);
 }
-::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-clip: content-box;
   background-color: #bc2131;
   border: 3px solid rgba(0, 0, 0, .2);

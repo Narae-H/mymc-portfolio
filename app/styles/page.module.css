@@ -1,16 +1,27 @@
 .main {
   display: flex;
+  flex-direction: column;
   flex: 1;
   padding: 20px;
-  /* background-color: var(--bg-grey); */
   gap: 20px;
 }
 
+.layoutRow {
+  display: flex;
+  flex: 1;
+}
+
 .sidebar {
+  position: sticky;
+  top: 70px;
   width: 250px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  flex-shrink: 0;
 }
 
 .content {
   flex: 1;
+  padding: 2rem;
 }
 
