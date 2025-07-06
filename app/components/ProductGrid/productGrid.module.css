@@ -1,0 +1,31 @@
+.gridTop {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  background-image: linear-gradient(to top, var(--bg-white), var(--bg-grey));
+  border-radius: .75rem;
+}
+
+.gridTop h1 {
+  font-size: 34px;
+  font-weight: 800;
+}
+.gridTop h1 span {
+  font-size: 20px;
+  font-weight: 500;;
+  color: var(--color-grey);
+}
+
+.gridTop .description {
+  padding: 1rem 0 0.5rem 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.gridContent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px; 
+  padding: 16px 0;
+}
