@@ -1,10 +1,10 @@
 'use client'; 
 
 import { useEffect, useState } from 'react';
-import { fetchProducts } from '../../../lib/shopify';
+import { fetchProducts } from '@/api/products';
 
-import styles from './productGrid.module.css';
-import ProductCard from '../ProductCard/ProductCard';
+import styles from '@/app/components/ProductGrid/productGrid.module.css';
+import ProductCard from '@/app/components/ProductCard/ProductCard';
 import { Product } from '@/models/product';
 
 export default function ProductGrid() {

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import DropdownToggle from '../DropdownToggle/DropdownToggle';
 
-import sidebarStyles from '../Sidebar/sidebar.module.css'
-import styles from './filterGroup.module.css'
+import sidebarStyles from '@/app/components/Sidebar/sidebar.module.css'
+import styles from '@/app/components/FilterGroup/filterGroup.module.css'
 
 interface Props {
   title: string;

@@ -1,4 +1,4 @@
-export const FETCH_MEAL_TYPES_QUERY = `
+export const FETCH_PRODUCT_MEAL_TYPES_QUERY = `
   {
     products(first: 100) {
       edges {

@@ -1,6 +1,6 @@
 
-import Button from '../Button/Button';
-import styles from './progressBar.module.css';
+import Button from '@/app/components/Button/Button';
+import styles from '@/app/components/ProgressBar/progressBar.module.css';
 
 export default function ProgressBar() {
   return (

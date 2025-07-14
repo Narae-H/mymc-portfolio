@@ -1,6 +1,6 @@
 import { RawMealType } from "@/models/meal";
 
-export function parseMealTypesFromMetafields(data: any): RawMealType[] {
+export function extractMealTypesFromMetafields(data: any): RawMealType[] {
   const rawList: RawMealType[] = [];
 
   data.products.edges.forEach((edge: any) => {

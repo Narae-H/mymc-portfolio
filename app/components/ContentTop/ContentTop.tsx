@@ -1,6 +1,5 @@
-import Button from "../Button/Button";
-
-import styles from './contentTop.module.css';
+import Button from "@/app/components/Button/Button";
+import styles from '@/app/components/ContentTop/contentTop.module.css';
 
 export default function ContentTop(){
   const menus = [

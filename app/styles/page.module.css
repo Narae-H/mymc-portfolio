@@ -13,9 +13,9 @@
 
 .sidebar {
   position: sticky;
-  top: 70px;
+  top: calc(var(--sticky-header-height) + var(--sidebar-margin-top));
   width: 250px;
-  height: calc(100vh - 60px);
+  height: max-content;
   overflow-y: auto;
   flex-shrink: 0;
 }

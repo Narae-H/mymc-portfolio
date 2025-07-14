@@ -49,7 +49,7 @@ You can view the live demo here: [https://mymc-portfolio.vercel.app](https://mym
 # Folder Structure
 ```bash
 mymc-portfolio
-├── 📁 .github                         # GitHub-related documentation and templates
+├── 📁 .github                         # GitHub configuration and templates for collaboration
 │   ├── 📁 ISSUE_TEMPLATE              
 │   │   ├── 📄 bug_report.md
 │   │   ├── 📄 feature_request.md
@@ -57,7 +57,11 @@ mymc-portfolio
 │   ├── 📄 COMMIT_CONVENTION.md        
 │   └── 📄 PULL_REQUEST_TEMPLATE.md   
 │
-├── 📁 app                             # App directory for Next.js (App Router)
+├── 📁 api                             # Handles external API communication
+│   ├── 📄 products.ts                 # Functions to fetch products and related data from Shopify
+│   └── 📄 shopify.ts                  # Common fetch logic for Shopify Storefront API│
+│
+├── 📁 app                             # Next.js App Router application structure
 │   ├── 📁 components                  # Reusable React components
 │   ├── 📁 styles                      # CSS Modules for component-level styling
 │   ├── 📄 layout.tsx                  
@@ -66,11 +70,10 @@ mymc-portfolio
 ├── 📁 data                            # Static data used in components
 │   └── 📄 filters.ts                  # Sidebar menu data (e.g., meal categories)
 │
-├── 📁 lib                             # Utility functions (e.g. Shopify API)
+├── 📁 lib                             # Pure logic helpers (e.g., parsing, formatting, tree builders)
 │   ├── 📁 parsers                     # Data transformers for API responses
-│   ├── 📁 queries                     # GraphQL query definitions for Shopify
-│   ├── 📁 utils                       # General utility functions
-│   └── 📄 shopify.ts                  # Shopify Storefront API integration
+│   ├── 📁 graphql                     # GraphQL query definitions for Shopify
+│   └── 📁 utils                       # General utility functions
 │
 ├── 📁 models                          # Type definitions or interfaces 
 │

@@ -5,6 +5,6 @@ export interface RawMealType {
 
 export interface MealTypeNode {
   mealType: string;
-  subMealType: string[];
+  subMealTypes: string[];
 }
 

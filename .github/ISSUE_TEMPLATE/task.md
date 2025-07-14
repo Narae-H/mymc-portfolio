@@ -3,7 +3,7 @@ name: 📋 Task
 about: Describe a general task or to-do item
 title: "[TASK] "
 labels: task
-assignees: NaraeH
+assignees: Naraeh-H
 ---
 
 ## Description

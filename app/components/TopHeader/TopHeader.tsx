@@ -1,4 +1,4 @@
-import styles from './topHeader.module.css'
+import styles from '@/app/components/topHeader/topHeader.module.css'
 
 export default function Header() {
   return (
