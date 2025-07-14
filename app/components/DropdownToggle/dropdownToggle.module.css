@@ -1,0 +1,9 @@
+.dropdownToggle {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 700;
+  margin-bottom: .8rem;
+}

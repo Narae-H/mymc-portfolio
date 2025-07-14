@@ -1,0 +1,139 @@
+/* 1. Font Face Definitions */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter-regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter-medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter-semibold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter-bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+/* 2. Global CSS Variables (Mobile First) */
+:root {
+  /* Primary and Point Colors */
+  --primary-color: rgb(255, 0, 53);
+  --point-color: rgb(220, 255, 80);
+
+  /* Background Colors */
+  --bg-black: rgb(0, 0, 0);
+  --bg-white: rgb(255, 255, 255);
+  --bg-grey: rgb(238, 238, 238);
+  --bg-red: rgb(255, 0, 53);
+  --bg-lime: rgb(220, 255, 80);
+  --bg-purple: rgb(107, 59, 155);
+
+  /* Category Background Colors */
+  --bg-high-protein: rgb(184, 141, 59);
+  --bg-low-calories: rgb(19, 124, 193);
+  --bg-pro: rgb(255, 230, 0);
+  --bg-plus: rgb(37, 52, 60);
+  --bg-serves: rgb(132, 132, 132);
+  --bg-soup: rgb(95, 161, 11);
+  
+  /* Text Colors */
+  --color-black: rgb(0, 0, 0);
+  --color-white: rgb(255, 255, 255);
+  --color-red: rgb(255, 0, 53);
+  --color-darkgrey: rgb(37, 52, 60);
+  --color-grey: rgb(132, 132, 132);
+  --color-green: rgb(0, 138, 34);
+  --color-blue: rgb(0, 108, 237);
+
+  /* Border Color */
+  --border-color: rgb(229, 231, 235);
+
+  /* Font Family */
+  --font-family: 'Inter', Helvetica, Arial, sans-serif;
+
+  /* Static component sizes */
+  --top-header-height: 40px;
+  --sticky-header-height: 70px;
+  --progress-bar-height: 90px;
+  --sidebar-margin-top: 24px;
+}
+
+/* 3. Global Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 4. Scrollbar Styling */
+html::-webkit-scrollbar {
+  background-color: transparent;
+  width: 13px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--bg-white);
+}
+html::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  background-color: #bc2131;
+  border: 3px solid rgba(0, 0, 0, .2);
+  border-radius: 10px;
+}
+
+/* 5. Layout Container */
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1536px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 6. Breakpoints */
+/* Tablet @ 768px */
+@media (max-width: 768px) {
+  :root {
+    --top-header-height: 40px;
+    --sticky-header-height: 70px;
+    --progress-bar-height: 90px;
+    --sidebar-margin-top: 24px;
+  }
+  .container {
+    max-width: 640px;
+    padding: 0;
+  }
+}
+
+/* Mobile @ 767px */
+@media (max-width: 767px) {
+  :root {
+    --top-header-height: 40px;
+    --sticky-header-height: 70px;
+    --progress-bar-height: 90px;
+    --sidebar-margin-top: 24px;
+  }
+  .container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}

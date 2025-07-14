@@ -1,0 +1,66 @@
+.footer {
+  background-color: var(--bg-grey);
+  color: var(--color-black);
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 6rem 0 8rem 0
+}
+
+.logo {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.menuGroup h4 {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Inter';
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.top ul {
+  list-style: none;
+}
+.top li {
+  padding-bottom: 9.6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.top li:hover {
+  text-decoration: underline;
+  color: var(--color-red);
+}
+.menuGroup ul {
+  max-width: 100px;
+  padding: 0;
+  margin: 0;
+}
+.menuGroup ul:last-child {
+  max-width: 200px;
+}
+
+.bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  color: var(--color-grey);
+  justify-content: space-between;
+}
+
