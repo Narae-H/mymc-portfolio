@@ -1,19 +1,3 @@
-export interface ProductImage {
-  node : {
-    url: string;
-    altText: string | null;
-  }
-}
-
-export interface Variant {
-  node: {
-    price: {
-      amount: string;
-      currencyCode: string;
-    };
-  }
-}
-
 export interface Product {
   id: string;
   title: string;
@@ -31,5 +15,4 @@ export interface Product {
   imageAlt: string;
   price: number;
   currency: string;
-  variants: { edges: Variant[]};
 }

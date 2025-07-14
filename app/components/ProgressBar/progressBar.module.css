@@ -1,7 +1,7 @@
 .wrapper {
   position: sticky;
   bottom: 0;
-  max-height: 90px;
+  height: var(--progress-bar-height);
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.05) 4px -8px 15px 0px;
   background-color: var(--bg-white);

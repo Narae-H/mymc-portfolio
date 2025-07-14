@@ -1,4 +1,4 @@
-import styles from './footer.module.css'
+import styles from '@/app/components/Footer/footer.module.css'
 
 export default function Footer() {
   return (
@@ -6,7 +6,7 @@ export default function Footer() {
       <div className={`${styles.headerContainer} container`}>
         <div className={styles.top}>
           <div className={styles.info}>
-            <img className={styles.logo} alt="logo" loading="lazy" decoding="async" data-nimg="1" src="https://www.datocms-assets.com/81001/1666837322-01_mymc_blk.svg"/>
+            <img className={styles.logo} alt="My Muscle Chef" loading="lazy" decoding="async" data-nimg="1" src="https://www.datocms-assets.com/81001/1666837322-01_mymc_blk.svg"/>
             <ul>
               <li>ABN 92 162 190 070</li>
               <li>1 NORRIE STREET</li>
@@ -99,14 +99,14 @@ export default function Footer() {
           <div className={styles.menuGroup}>
             <h4>Download Our App</h4>
             <ul>
-              <li><img alt="app-store" loading="lazy" width="127" height="42" decoding="async" data-nimg="1" src="/assets/images/mymc-appstore.svg"/></li>
-              <li><img alt="play-store" loading="lazy" width="127" height="42" decoding="async" data-nimg="1" src="/assets/images/mymc-googleplay.svg"/></li>
+              <li><img alt="App Store" loading="lazy" width="127" height="42" decoding="async" data-nimg="1" src="/assets/images/mymc-appstore.svg"/></li>
+              <li><img alt="Play Store" loading="lazy" width="127" height="42" decoding="async" data-nimg="1" src="/assets/images/mymc-googleplay.svg"/></li>
             </ul>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <img alt="payment options" loading="lazy" width="289" height="18" decoding="async" data-nimg="1" src="/assets/images/payment-options.svg"/>
+          <img alt="Payment Options" loading="lazy" width="289" height="18" decoding="async" data-nimg="1" src="/assets/images/payment-options.svg"/>
           <p>Copyright 2013 - {new Date().getFullYear()} My Muscle Chef Pty Ltd. All rights reserved.</p>
         </div>
       </div>

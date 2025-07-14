@@ -1,10 +1,11 @@
-import styles from './stickyHeader.module.css'
 
 import { BsChatLeftDotsFill } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
-import Button from '../Button/Button';
+
+import Button from '@/app/components/Button/Button';
+import styles from '@/app/components/StickyHeader/stickyHeader.module.css'
 
 
 export default function StickyHeader() {
@@ -12,7 +13,7 @@ export default function StickyHeader() {
     <header className={styles.stickyWrapper}>
       <div className={`${styles.headerContainer} container`}>
         <a className={styles.headerLogo}>
-          <img alt="logo" loading="lazy" decoding="async" data-nimg="1" src="https://www.datocms-assets.com/81001/1666837322-01_mymc_blk.svg"/>
+          <img alt="My Muscle Chef" loading="lazy" decoding="async" data-nimg="1" src="https://www.datocms-assets.com/81001/1666837322-01_mymc_blk.svg"/>
         </a>
         <div className={styles.headerMenus}>
           <nav className={styles.nav}>

@@ -1,5 +1,5 @@
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import styles from './dropdownToggle.module.css'
+import styles from '@/app/components/DropdownToggle/dropdownToggle.module.css'
 
 interface Props {
   label: string;

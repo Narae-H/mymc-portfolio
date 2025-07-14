@@ -1,5 +1,5 @@
 .sidebar {
-  height: calc(100vh - 140px);
+  height: calc(100vh - var(--sticky-header-height) - var(--progress-bar-height) - var(--sidebar-margin-top) - var(--top-header-height) ); 
   padding-right: 2rem;
   overflow-y: scroll;
 }

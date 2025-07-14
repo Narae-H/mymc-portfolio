@@ -2,11 +2,11 @@
 
 import styles from './styles/page.module.css';
 
-import ProgressBar from './components/ProgressBar/ProgressBar';
-import Sidebar from './components/Sidebar/Sidebar';
-import ProductGrid from './components/ProductGrid/ProductGrid';
-import ContentTop from './components/ContentTop/ContentTop';
-import StickyHeader from './components/StickyHeader/StickyHeader';
+import StickyHeader from '@/app/components/StickyHeader/StickyHeader';
+import ProgressBar from '@/app/components/ProgressBar/ProgressBar';
+import Sidebar from '@/app/components/Sidebar/Sidebar';
+import ProductGrid from '@/app/components/ProductGrid/ProductGrid';
+import ContentTop from '@/app/components/ContentTop/ContentTop';
 
 export default function Home() {
   return (
