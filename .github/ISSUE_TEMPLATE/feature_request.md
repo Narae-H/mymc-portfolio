@@ -3,7 +3,7 @@ name: ✨ Feature Request
 about: Suggest a new feature or improvement
 title: "[Feature] "
 labels: []
-assignees: Naraeh-H
+assignees: Narae-H
 ---
 
 ## Description

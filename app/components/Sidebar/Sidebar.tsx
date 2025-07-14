@@ -1,15 +1,16 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { fetchProductMealTypesTree } from '@/api/products';
-import { MealTypeNode } from '@/models/meal';
 
-import styles from '@/app/components/Sidebar/sidebar.module.css';
+import { fetchProductMealTypesTree, fetchProductPreferences } from '@/api/products';
+import { MealTypeNode } from '@/models/meal';
+import { filters as FILTER_CONFIG } from '@/data/filters';
+
 import Button from '@/app/components/Button/Button';
 import MealMenuItem from '@/app/components/MealMenuItem/MealMenuItem';
 import FilterGroup from '@/app/components/FilterGroup/FilterGroup';
+import styles from '@/app/components/Sidebar/sidebar.module.css';
 
-import { filters as FILTER_CONFIG } from '@/data/filters';
 
 export default function Sidebar() {
   const [mealTree, setMealTree] = useState<MealTypeNode[]>([]);
@@ -18,8 +19,9 @@ export default function Sidebar() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await fetchProductMealTypesTree();
-        setMealTree(data);
+        // const mealTypeNode = await fetchProductMealTypesTree();
+        // setMealTree(mealTypeNode);
+        const mealTag = await fetchProductPreferences();
       } catch (err) {
         console.error(err);
       } 

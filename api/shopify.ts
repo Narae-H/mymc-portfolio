@@ -11,14 +11,14 @@ export async function shopifyFetch(query: string) {
       },
       body: JSON.stringify({ query }),
     });
-  
+
     if (!response.ok) {
       const errorText = await response.text().catch(() => response.statusText);
       throw new Error(`Request failed (${response.status}): please try again later.`);
     }
   
     const json = await response.json();
-  
+
     if (json.errors) {
       console.error('Shopify errors:', json.errors);
       throw new Error('Data fetching error — something went wrong retrieving information.');
