@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import Header from '@/app/components/TopHeader/TopHeader';
-import Footer from '@/app/components/Footer/Footer';
 import "@/app/styles/global.css";
+import styles from '@/app/styles/page.module.css';
+
+import Footer from '@/app/components/Footer/Footer';
+import Header from '@/app/components/TopHeader/TopHeader';
+import StickyHeader from "./components/StickyHeader/StickyHeader";
+import Sidebar from "./components/Sidebar/Sidebar";
+import ProgressBar from "./components/ProgressBar/ProgressBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +36,16 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
         <div>
-          {children}
+          <StickyHeader />
+          <main className='main container'>
+            <div className='layoutRow'>
+              <aside className='sidebar'>
+                <Sidebar />
+              </aside>
+              {children}
+            </div>
+          </main>
+          <ProgressBar />
           <Footer />
         </div>
       </body>

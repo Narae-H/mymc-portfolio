@@ -1,26 +1,26 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { fetchProductMealTypesTree, fetchProductPreferences } from '@/api/products';
-import { MealTypeNode } from '@/models/meal';
+import { fetchProductMealTypesTree } from '@/api/products';
 import { filters as FILTER_CONFIG } from '@/data/filters';
+import { MealType } from '@/models/meal';
 
 import Button from '@/app/components/Button/Button';
-import MealMenuItem from '@/app/components/MealMenuItem/MealMenuItem';
 import FilterGroup from '@/app/components/FilterGroup/FilterGroup';
+import MealMenuItem from '@/app/components/MealMenuItem/MealMenuItem';
 import styles from '@/app/components/Sidebar/sidebar.module.css';
 
 
 export default function Sidebar() {
-  const [mealTree, setMealTree] = useState<MealTypeNode[]>([]);
+  const [mealTypes, setmealTypes] = useState<MealType[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const mealTypeNode = await fetchProductMealTypesTree();
-        setMealTree(mealTypeNode);
+        const mealTypes = await fetchProductMealTypesTree();
+        setmealTypes(mealTypes);
         // const mealTag = await fetchProductPreferences();
       } catch (err) {
         console.error(err);
@@ -50,7 +50,7 @@ export default function Sidebar() {
 
   return (
   <div className={styles.sidebar}>
-    <MealTypeList mealTree={mealTree} />
+    <MealTypeList mealTypes={mealTypes} />
     <hr className={styles.divider} />
     <FilterSection
       selectedFilterCount={selectedFilterCount}
@@ -61,18 +61,17 @@ export default function Sidebar() {
 );
 }
 
-function MealTypeList({ mealTree }: { mealTree: MealTypeNode[] }) {
+function MealTypeList({ mealTypes }: { mealTypes: MealType[] }) {
   return (
     <div className={styles.mealTypes}>
       <ul className={styles.list}>
         <li>
-          <a href="/menus/meals">All Meals</a>
+          <a href="/">All Meals</a>
         </li>
-        {mealTree.map((meal) => (
+        {mealTypes.map((mealType) => (
           <MealMenuItem
-            key={meal.mealType}
-            mealType={meal.mealType}
-            subMealTypes={meal.subMealTypes}
+            key={mealType.id}
+            mealType={mealType}
           />
         ))}
       </ul>
