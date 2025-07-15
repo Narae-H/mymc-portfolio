@@ -62,6 +62,9 @@ mymc-portfolio
 │   └── 📄 shopify.ts                  # Common fetch logic for Shopify Storefront API│
 │
 ├── 📁 app                             # Next.js App Router application structure
+│   ├── 📁 collections                 # Folder for collection-related pages
+│   │   └── 📁 [handle]                # Dynamic route segment for collection handles
+│   │       └── 📄 page.tsx            # Page component for displaying a specific collection
 │   ├── 📁 components                  # Reusable React components
 │   ├── 📁 styles                      # CSS Modules for component-level styling
 │   ├── 📄 layout.tsx                  
