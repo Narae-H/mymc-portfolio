@@ -19,9 +19,9 @@ export default function Sidebar() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // const mealTypeNode = await fetchProductMealTypesTree();
-        // setMealTree(mealTypeNode);
-        const mealTag = await fetchProductPreferences();
+        const mealTypeNode = await fetchProductMealTypesTree();
+        setMealTree(mealTypeNode);
+        // const mealTag = await fetchProductPreferences();
       } catch (err) {
         console.error(err);
       } 

@@ -34,7 +34,7 @@
   background-color: var(--bg-pro);
   color: var(--color-black);
 }
-.mealType.local {
+.mealType.lo-cal {
   background-color: var(--bg-low-calories);
 }
 .mealType.high {
