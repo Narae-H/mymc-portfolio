@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import DropdownToggle from '../DropdownToggle/DropdownToggle';
 
+import DropdownToggle from '../DropdownToggle/DropdownToggle';
 import sidebarStyles from '@/app/components/Sidebar/sidebar.module.css'
-import styles from '@/app/components/FilterGroup/filterGroup.module.css'
+import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css'
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ interface Props {
   onChange?: (option: string) => void;
 }
 
-export default function FilterGroup({ title, type, options, selected = [], onChange }: Props) {
+export default function FilterItem({ title, type, options, selected = [], onChange }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen((prev) => !prev);
@@ -31,7 +31,7 @@ export default function FilterGroup({ title, type, options, selected = [], onCha
                 <input
                   type={type}
                   name={title}
-                  checked={selected.includes(option)}
+                  checked={isChecked(type, option, selected)}
                   onChange={() => handleChange(option)}
                 />
                 <span>{option}</span>
@@ -42,4 +42,14 @@ export default function FilterGroup({ title, type, options, selected = [], onCha
       )}
     </div>
   );
+}
+
+const isChecked = (
+  type: string, 
+  option: string,
+  selected: string[] 
+) => {
+  return type === "radio"
+  ? selected[0] === option
+  : Array.isArray(selected) && selected.includes(option); 
 }

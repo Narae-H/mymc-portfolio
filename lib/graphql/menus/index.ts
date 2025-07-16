@@ -1,0 +1,1 @@
+export { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/getMealTypes';

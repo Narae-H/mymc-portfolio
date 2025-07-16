@@ -137,3 +137,25 @@ html::-webkit-scrollbar-thumb {
     padding: 0 1rem;
   }
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  gap: 20px;
+}
+
+.layoutRow {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  position: sticky;
+  top: calc(var(--sticky-header-height) + var(--sidebar-margin-top));
+  width: 250px;
+  height: max-content;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
