@@ -51,10 +51,3 @@ export async function fetchCollectionWithProducts( options?: FetchProductsOption
 
   return products;
 }
-
-export async function fetchProductPreferences() {
-  // TODO: 문제는 Preferences와 Dietary를 어떻게 구분할것인가..? 좀 더 생각해보자.
-  // const data = await shopifyFetch(FETCH_PRODUCT_PREFERENCES_QUERY);
-  // console.log(data);
-  return "";
-}

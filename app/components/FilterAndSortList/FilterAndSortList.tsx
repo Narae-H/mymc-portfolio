@@ -9,24 +9,28 @@ import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.
 
 export function FilterAndSortList() {
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
+  const [sortOption, setSortOption] = useState<string>('');
 
   const handleFilterSelect = (title: string, option: string) => {
+    if (title === 'Sort') {
+      setSortOption(option);
+      return;
+    }
+
     setSelectedFilters((prev) => {
       const prevSelected = prev[title] || [];
-      const isRadio = FILTER_CONFIG.find((f) => f.title === title)?.type === 'radio';
 
-      const updated = isRadio
-        ? [option]
-        : prevSelected.includes(option)
+      const updated = prevSelected.includes(option)
         ? prevSelected.filter((o) => o !== option)
         : [...prevSelected, option];
 
       return { ...prev, [title]: updated };
-    });
-  };
+   });
+  }
 
   const selectedFilterCount = useMemo(() => {
-    return Object.values(selectedFilters).reduce((sum, list) => sum + list.length, 0);
+    return Object.entries(selectedFilters)
+      .reduce((sum, [title, list]) => sum + list.length, 0);
   }, [selectedFilters]);
 
   return (
@@ -46,7 +50,11 @@ export function FilterAndSortList() {
             title={title}
             type={type}
             options={options}
-            selected={selectedFilters[title] || []}
+            selected={
+              type === 'radio'
+              ? [sortOption]
+              :selectedFilters[title] || []
+            }
             onChange={(option) => handleFilterSelect(title, option)}
           />
         ))}

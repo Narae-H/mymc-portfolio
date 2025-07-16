@@ -31,7 +31,7 @@ export default function FilterItem({ title, type, options, selected = [], onChan
                 <input
                   type={type}
                   name={title}
-                  checked={selected.includes(option)}
+                  checked={isChecked(type, option, selected)}
                   onChange={() => handleChange(option)}
                 />
                 <span>{option}</span>
@@ -42,4 +42,14 @@ export default function FilterItem({ title, type, options, selected = [], onChan
       )}
     </div>
   );
+}
+
+const isChecked = (
+  type: string, 
+  option: string,
+  selected: string[] 
+) => {
+  return type === "radio"
+  ? selected[0] === option
+  : Array.isArray(selected) && selected.includes(option); 
 }

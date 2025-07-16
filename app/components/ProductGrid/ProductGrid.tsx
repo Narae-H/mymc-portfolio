@@ -10,7 +10,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   return (
     <div className={styles.productGrid}>
       <div className={styles.gridTop}>
-        <div><h1>Meals <span>(85)</span></h1></div>
+        <div><h1>Meals <span>({products.length})</span></h1></div>
         <div className={styles.description}>Enjoy our range of high-protein meals crafted by our Chef and Dietitian. Nourishing and packed with flavour.</div>
       </div>
 

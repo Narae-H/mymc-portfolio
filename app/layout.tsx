@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "@/app/styles/global.css";
-import styles from '@/app/styles/page.module.css';
 
 import Footer from '@/app/components/Footer/Footer';
 import Header from '@/app/components/TopHeader/TopHeader';
-import StickyHeader from "./components/StickyHeader/StickyHeader";
-import Sidebar from "./components/Sidebar/Sidebar";
-import ProgressBar from "./components/ProgressBar/ProgressBar";
+import StickyHeader from "@/app/components/StickyHeader/StickyHeader";
+import Sidebar from "@/app/components/Sidebar/Sidebar";
+import ProgressBar from "@/app/components/ProgressBar/ProgressBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
