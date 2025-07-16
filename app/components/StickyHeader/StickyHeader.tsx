@@ -17,7 +17,7 @@ export default function StickyHeader() {
         </a>
         <div className={styles.headerMenus}>
           <nav className={styles.nav}>
-            <a href="#">Full Menu</a>
+            <a href="/">Full Menu</a>
             <a href="#">Meal Plans</a>
           </nav>
           <div className={styles.buttonWrapper}>

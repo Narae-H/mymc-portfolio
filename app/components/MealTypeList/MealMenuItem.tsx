@@ -1,27 +1,26 @@
-import { useState } from 'react';
+'use client'
 
-import sidebarStyles from '@/app/components/Sidebar/sidebar.module.css'
+import { useState } from 'react';
+import Link from 'next/link';
+
+import styles from '@/app/components/MealTypeList/mealTypeList.module.css'
 import DropdownToggle from '@/app/components/DropdownToggle/DropdownToggle';
 import { MealType } from '@/models/meal';
-import Link from 'next/link';
-import { extractRelative } from '@/lib/utils/extractRelative';
+import { getLastPathSegment } from '@/lib/utils/url'
 
 interface Props {
   mealType: MealType;
   defaultOpen?: boolean;
 }
 
-
 export default function MealMenuItem({ mealType, defaultOpen = false }: Props) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-
   const toggle = () => setIsOpen(prev => !prev);
 
   if (mealType.items.length === 0) {
     return (
       <li>
-        {/* <a href={mealType.url}>{mealType.title}</a> */}
-        <Link href={extractRelative(mealType.url)} key={mealType.url}>
+        <Link href={getLastPathSegment(mealType.url)} key={mealType.id}>
           {mealType.title}
         </Link>
       </li>
@@ -32,11 +31,10 @@ export default function MealMenuItem({ mealType, defaultOpen = false }: Props) {
     <li>
       <DropdownToggle label={mealType.title} isOpen={isOpen} onClick={toggle} />
       {isOpen && (
-        <ul className={sidebarStyles.subList}>
+        <ul className={styles.subList}>
           {mealType.items.map((child) => (
             <li key={child.id}>
-              {/* <a href={child.url}>{child.title}</a> */}
-              <Link href={extractRelative(child.url)} key={child.url}>
+              <Link href={getLastPathSegment(child.url)} key={child.url}>
                 {child.title}
               </Link>
             </li>

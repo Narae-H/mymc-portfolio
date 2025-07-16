@@ -1,0 +1,49 @@
+export const GET_COLLECTION_WITH_PRODUCTS_QUERY = `
+  query GetCollectionWithProducts($hdl: String!) {
+    collection(handle: $hdl) {
+      id
+      title
+      products(first: 20) { 
+        edges { 
+          node {
+            id
+            title
+            description
+            images(first: 1) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  price {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+            metafields(identifiers: [
+              { namespace: "nutrition", key: "calories" },
+              { namespace: "nutrition", key: "protein" },
+              { namespace: "nutrition", key: "carbs" },
+              { namespace: "nutrition", key: "fat" },
+              { namespace: "meal", key: "type" },
+              { namespace: "details", key: "ingredients" },
+              { namespace: "details", key: "nutritional_info" },
+              { namespace: "details", key: "instructions" }
+            ]) {
+              namespace
+              key
+              value
+            }
+          } 
+        } 
+      }
+    }
+  }
+`

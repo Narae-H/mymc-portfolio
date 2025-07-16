@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import DropdownToggle from '../DropdownToggle/DropdownToggle';
 
+import DropdownToggle from '../DropdownToggle/DropdownToggle';
 import sidebarStyles from '@/app/components/Sidebar/sidebar.module.css'
-import styles from '@/app/components/FilterGroup/filterGroup.module.css'
+import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css'
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ interface Props {
   onChange?: (option: string) => void;
 }
 
-export default function FilterGroup({ title, type, options, selected = [], onChange }: Props) {
+export default function FilterItem({ title, type, options, selected = [], onChange }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen((prev) => !prev);
