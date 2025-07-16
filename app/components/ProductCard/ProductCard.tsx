@@ -22,10 +22,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <div className={styles.contentWrapper}>
         <div className={styles.info}>
-          <span>{product.calories} CAL</span>
-          <span>{product.protein} P</span>
-          <span>{product.carbs} C</span>
-          <span>{product.fat} F</span>
+          <span >{product.calories} <span className={styles[`f-400`]}>CAL</span></span>
+          <span>{product.protein} <span className={styles[`f-400`]}>P</span></span>
+          <span>{product.carbs} <span className={styles[`f-400`]}>C</span></span>
+          <span>{product.fat} <span className={styles[`f-400`]}>F</span></span>
         </div>
         <div className={styles.product}>
           <div className={styles.productTitle}>{product.title}</div>

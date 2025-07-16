@@ -4,48 +4,11 @@
   overflow-y: scroll;
 }
 
-/* Common */
 .divider {
   border: 0.5px solid var(--border-color);
   margin: .75rem 0 1.25rem 0;
   transform: scaleY(0.1);
 }
 
-.list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 24px;
-}
 
-.list li {
-  font-size: 16px;
-  color: var(--color-black);
-  margin-bottom: .8rem;
-}
 
-.subList {
-  list-style: none;
-  padding-left: 1rem;
-  margin-top: 0.5rem;
-}
-
-.mealTypes li {
-  font-weight: 700;
-}
-
-/* Sort */
-.sort button {
-  font-size: 12px;
-  padding-left:0;
-}
-
-.sort .heading1 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-.sort .heading1 span {
-  font-size: 16px;
-  color: var(--color-grey);
-  font-weight: 500;
-}

@@ -9,17 +9,11 @@ export function parseProduct(raw: any): Product {
     metafieldsMap[`${field.namespace}.${field.key}`] = field.value;
   });
 
-  let category = '';
-  try {
-    const parsed = JSON.parse(metafieldsMap['categories.meal_type'] || '{}');
-    category = parsed.name.replace(/Meals/g, '')  || '';
-  } catch (e) {
-    console.warn('Invalid category metafield:', metafieldsMap['categories.meal_type']);
-  }
+  let category = metafieldsMap['meal.type'];
   let categoryPrefix = (category.split(' ')[0] || '')
-                        .replace(/[^a-zA-Z0-9]/g, '') 
+                        .replace(/[+]/g, '') 
                         .toLowerCase();   
-                        
+  
   return {
     id: raw.id,
     title: raw.title,
