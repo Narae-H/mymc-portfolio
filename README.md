@@ -88,9 +88,8 @@ mymc-portfolio
 └── 📄 .env.local                      # Environment variables for local development
 ```
 
-TODO
-## Known Issues & Solutions
-### 1. Hybrid Structure (SSR + Client-side Fetch)
+# Known Issues & Solutions
+## 1. Hybrid Structure (SSR + Client-side Fetch)
 I chose a **hybrid architecture**—combining server-side rendering (SSR) with client-side fetching—to enhance performance, SEO, and state synchronisation.  
 - Initial Load (SSR):
   - Data is fetched on the server, producing pre-rendered HTML.
@@ -101,7 +100,7 @@ I chose a **hybrid architecture**—combining server-side rendering (SSR) with c
   - This enables quick, dynamic updates without a full page reload.
   - It keeps the UI responsive and seamless, with Redux state fully synchronised with displayed content
 
-#### Why this Hybrid Approach is Ideal
+### Why this Hybrid Approach is Ideal
 | Benefit               | Details                                                                                                          |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | **Fast initial load** | SSR deliversHTML content on page load, improving perceived performance and Core Web Vitals ([DEV Community][1]). |
