@@ -5,32 +5,47 @@ import { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/index';
 import { parseProduct } from '@/lib/parsers/parseProduct';
 import { shopifyFetch } from '@/api/shopify';
 import { MealType } from '@/models/meal';
-import { Product } from '@/models/product';
 
-interface FetchProductsOptions {
+interface FilterValues {
+  filters?: string;
+  sortBy?: string;
   keyword?: string;
   cursor?: string;
 }
 
-export async function fetchProducts(options?: FetchProductsOptions) {
-  const keyword = options?.keyword;
-  const cursor = options?.cursor;
+interface FetchProductsParams {
+  handle?: string;
+  filters?: FilterValues;
+  sortBy?: string;
+  cursor?: string;
+}
+
+
+export async function fetchProducts(options: FetchProductsParams = {}) {
+const { filters, sortBy, cursor, handle } = options;
   
   // TODO: 나중에 filter & sort 대비하여 만들어 놓음
-  const queryString = keyword
-  ? `metafield.namespace:meal AND metafield.key:type AND metafield.value:${keyword}`
-  : '';
+  // const queryString = keyword
+  // ? `metafield.namespace:meal AND metafield.key:type AND metafield.value:${keyword}`
+  // : '';
 
   const variables = {
     first: 100,
-    query: queryString || undefined,
-    cursor: cursor || undefined
+    sortKey: sortBy,
+    reverse: true,
+    query: filters ? `metafield.namespace:meal AND metafield.key:type AND metafield.value:${filters}` : undefined,
+    cursor: cursor || undefined,
   };
 
-  const data: any = await shopifyFetch(GET_PRODUCTS_QUERY, variables);
-  const products: Product[] = data.products.edges.map((edge: any) => parseProduct(edge.node));
+  if ( handle ) {
+    const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: handle });
+    return data.collection.products.edges.map((edge: any) => parseProduct(edge.node));
 
-  return products;
+  } else {
+    const data: any = await shopifyFetch(GET_PRODUCTS_QUERY, variables);
+    return data.products.edges.map((edge: any) => parseProduct(edge.node));
+  }
+
 }
 
 export async function fetchProductMealTypesTree() {
@@ -43,11 +58,4 @@ export async function fetchProductMealTypesTree() {
                                                     }));
 
   return mealTypes;
-}
-
-export async function fetchCollectionWithProducts( options?: FetchProductsOptions ) {
-  const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: options?.keyword });
-  const products: Product[] = data.collection.products.edges.map((edge: any) => parseProduct(edge.node));
-
-  return products;
 }

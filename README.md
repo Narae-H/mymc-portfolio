@@ -37,8 +37,8 @@ You can view the live demo here: [https://mymc-portfolio.vercel.app](https://mym
 
 | **Category**       | **Stack / Tools**                                  | **Notes / Details**                                           |
 |-------------------|-----------------------------------------------------|---------------------------------------------------------------|
-| **Frontend**       | Next.js 14, React 18, TypeScript                    | Core technologies used for UI rendering and routing           |
-| **State Management** | React Hooks (`useState`, `useEffect`)            | Lightweight, local state handling                            |
+| **Frontend**       | Next.js 15, React 19, TypeScript                    | Core technologies used for UI rendering and routing           |
+| **State Management** | React Hooks (`useState`, `useEffect`)<br/> Reduct Toolkit (RTK), React-Redux (`useSelector`, `useDispatch`)  | Lightweight, local state handling                            |
 | **API Communication** | Fetch API, Axios                                 | REST/GraphQL fetch support                                   |
 | **Styling**        | CSS Modules, Custom CSS, Media Queries             | No Tailwind or Styled Components – styled manually            |
 | **Icons**          | React Icons                                        | Lightweight, flexible icon usage                             |
@@ -46,7 +46,7 @@ You can view the live demo here: [https://mymc-portfolio.vercel.app](https://mym
 | **Deployment**     | Vercel                                             | Simple, free deployment for Next.js projects                  |
 <br/>
 
-# Folder Structure
+# Key Folder Structure
 ```bash
 mymc-portfolio
 ├── 📁 .github                         # GitHub configuration and templates for collaboration
@@ -68,7 +68,8 @@ mymc-portfolio
 │   ├── 📁 styles                      # CSS Modules for component-level styling
 │   ├── 📄 layout.tsx                  
 │   ├── 📄 loading.tsx                  
-│   └── 📄 page.tsx                    
+│   ├── 📄 page.tsx                  
+│   └── 📄 StoreProvider.tsx           # Redux provider component         
 │
 ├── 📁 data                            # Static data used in components
 │   └── 📄 filters.ts                  # Sidebar menu data (e.g., meal categories)
@@ -82,7 +83,33 @@ mymc-portfolio
 │
 ├── 📁 public                          # Static assets
 │
+├── 📁 redux                           # State management
+│
 └── 📄 .env.local                      # Environment variables for local development
 ```
+
+TODO
+## Known Issues & Solutions
+### 1. Hybrid Structure (SSR + Client-side Fetch)
+I chose a **hybrid architecture**—combining server-side rendering (SSR) with client-side fetching—to enhance performance, SEO, and state synchronisation.  
+- Initial Load (SSR):
+  - Data is fetched on the server, producing pre-rendered HTML.
+  - Users see meaningful content immediately, reducing time to first paint.
+  - Search engines can easily index the full content, which is excellent for SEO 
+- Interactions (Client-side Fetch):
+  - When filters or sort options change, the updated data is fetched client-side.
+  - This enables quick, dynamic updates without a full page reload.
+  - It keeps the UI responsive and seamless, with Redux state fully synchronised with displayed content
+
+#### Why this Hybrid Approach is Ideal
+| Benefit               | Details                                                                                                          |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Fast initial load** | SSR deliversHTML content on page load, improving perceived performance and Core Web Vitals ([DEV Community][1]). |
+| **SEO-friendly**      | Pre-rendered content is fully indexable by search engines, boosting visibility .                                 |
+| **Dynamic UX**        | Client-side fetch on interactions keeps experience smooth and interactive.                                       |
+| **State consistency** | Redux can orchestrate filters and sort state to automatically trigger data updates.                              |
+
+[1]: https://dev.to/abhay_yt_52a8e72b213be229/maximizing-performance-and-seo-with-server-side-rendering-ssr-in-nextjs-9ih?utm_source=chatgpt.com "Maximizing Performance and SEO with Server-Side Rendering (SSR) in Next.js"
+
 <br/>
 
