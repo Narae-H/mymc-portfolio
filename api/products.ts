@@ -5,13 +5,7 @@ import { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/index';
 import { parseProduct } from '@/lib/parsers/parseProduct';
 import { shopifyFetch } from '@/api/shopify';
 import { MealType } from '@/models/meal';
-
-interface FilterValues {
-  filters?: string;
-  sortBy?: string;
-  keyword?: string;
-  cursor?: string;
-}
+import { FilterValues } from '@/models/filter';
 
 interface FetchProductsParams {
   handle?: string;
@@ -19,7 +13,6 @@ interface FetchProductsParams {
   sortBy?: string;
   cursor?: string;
 }
-
 
 export async function fetchProducts(options: FetchProductsParams = {}) {
 const { filters, sortBy, cursor, handle } = options;
@@ -33,7 +26,7 @@ const { filters, sortBy, cursor, handle } = options;
     first: 100,
     sortKey: sortBy,
     reverse: true,
-    query: filters ? `metafield.namespace:meal AND metafield.key:type AND metafield.value:${filters}` : undefined,
+    // query: filters ? `metafield.namespace:meal AND metafield.key:type AND metafield.value:${filters}` : undefined,
     cursor: cursor || undefined,
   };
 

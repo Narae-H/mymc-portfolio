@@ -4,8 +4,8 @@ import Button from '@/app/components/Button/Button';
 import FilterItem from '@/app/components/FilterAndSortList/FilterItem';
 import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css';
 import { filters as FILTER_CONFIG } from '@/data/filters';
-import { clearFilters, toggleFilter } from '@/redux/features/filterSlice';
-import { setSort } from '@/redux/features/sortSlice';
+import { clearFilters, toggleFilter } from '@/redux/features/filter/filterSlice';
+import { setSort } from '@/redux/features/sort/sortSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 export function FilterAndSortList() {

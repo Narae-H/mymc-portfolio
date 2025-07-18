@@ -1,28 +1,7 @@
+import { emptyFilterState, FilterState, FilterValues } from '@/models/filter';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface FilterValues {
-  preferences: string[];
-  proteinType: string[];
-  carbs: string[];
-  calories: string[];
-  dietary: string[];
-}
-
-interface FilterState {
-  selectedFilterCount : number;
-  selectedFilters: FilterValues;
-}
-
-const initialState: FilterState = {
-  selectedFilterCount: 0,
-  selectedFilters: {
-    preferences: [],
-    proteinType: [],
-    carbs: [],
-    calories: [],
-    dietary: []
-  },
-};
+const initialState: FilterState = { ...emptyFilterState };
 
 const filterSlice = createSlice({
   name: 'filter',
@@ -35,7 +14,7 @@ const filterSlice = createSlice({
       if (currentList.includes(value)) {
         state.selectedFilters[key] = currentList.filter((v) => v !== value);
       } else {
-        state.selectedFilters[key].push(value);
+        state.selectedFilters[key] = [...currentList, value];
       }
 
       state.selectedFilterCount = Object.values(state.selectedFilters).reduce(
