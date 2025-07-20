@@ -7,21 +7,21 @@ import { sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
 import { clearFilters, toggleFilter } from '@/redux/features/filter/filterSlice';
 import { setSort } from '@/redux/features/sort/sortSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export function FilterAndSortList() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   
   const { selectedFilters, selectedFilterCount } = useAppSelector(state => state.filter);
   const { sortBy } = useAppSelector(state => state.sort);
 
-  const updateSearchParams = (key: string, value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
-    router.push(`?${params.toString()}`, { scroll: false });
-  };
+  // const updateSearchParams = (key: string, value: string) => {
+  //   const params = new URLSearchParams(searchParams.toString());
+  //   params.set(key, value);
+  //   router.push(`?${params.toString()}`, { scroll: false });
+  // };
 
   return (
     <div className={styles.sort}>
@@ -48,7 +48,7 @@ export function FilterAndSortList() {
             onChange={(option) => {
               if (type === 'radio') {
                 dispatch(setSort(option));
-                updateSearchParams('sort', option);
+                // updateSearchParams('sort', option);
               } else {
                 dispatch(toggleFilter({ key, value: option }));
               }
