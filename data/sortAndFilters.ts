@@ -1,12 +1,10 @@
-export const filters = [
+export const sortAndFilters = [
   {
     title: 'Sort',
     key: 'sort',
     type: 'radio',
     options: [
-      'Featured',
       'Top sellers',
-      'Most liked',
       'New',
       'Price (Low to High)',
       'Price (High to Low)',

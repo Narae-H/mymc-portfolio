@@ -1,38 +1,43 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
-import styles from '@/app/components/SharedPage/sharedPage.module.css';
+import { fetchProducts } from '@/api/products';
 import ContentTop from '@/app/components/ContentTop/ContentTop';
 import ProductGrid from '@/app/components/ProductGrid/ProductGrid';
+import styles from '@/app/components/SharedPage/sharedPage.module.css';
+import { METAFIELD_SORT_CONFIG } from '@/data/sortConfig';
+import useDidMountEffect from '@/lib/hooks/useDidMountEffect';
+import { clientSortProducts } from '@/lib/utils/clientSortProducts';
+import { isMetafieldSortKey, isShopifySortKey } from '@/lib/utils/typeGuards';
 import { Product } from '@/models/product';
-import { useAppSelector } from '@/redux/hooks';
-import { fetchProducts } from '@/api/products';
 import { selectSelectedFilters } from '@/redux/features/filter/filterSelectors';
+import { useAppSelector } from '@/redux/hooks';
 
 type Props = {
-  initialProducts: Product[],
+  initialProducts: Product[];
   handle?: string; 
+  queryParams?: Record<string, string | number | boolean | string[]>;
 }
 
-// TODO: 1) 여기서 filters, sortBy 넘겨줘서 products.ts에서 인자 전달하는 부분해야함.
-export default function SharedPage({ initialProducts, handle }: Props) {
+export default function SharedPage({ initialProducts, handle, queryParams }: Props) {
   const filters = useAppSelector(selectSelectedFilters);
   const sortBy = useAppSelector(state => state.sort.sortBy);
 
   const [products, setProducts] = useState(initialProducts);
-  const didMount = useRef(false);
 
-  useEffect(() => {
-    if( !didMount.current ) {
-      didMount.current = true;
-      return;
-    }
+  useDidMountEffect( ()=> {
+    if (!sortBy || (!isShopifySortKey(sortBy) && !isMetafieldSortKey(sortBy))) return;
 
     fetchProducts({ handle, filters, sortBy })
-      .then(setProducts);
+      .then( (data) => {
+        const initialProducts: Product[] = data.needsClientSort
+        ? clientSortProducts(products, data.sortBy as keyof typeof METAFIELD_SORT_CONFIG)
+        : data.products;
 
-  }, [handle, filters, sortBy]);
+        setProducts(initialProducts);
+      });
+  }, [handle, filters, sortBy])
 
   return (
     <section className={styles.content}>

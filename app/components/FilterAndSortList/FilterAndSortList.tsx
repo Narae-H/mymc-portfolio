@@ -3,16 +3,25 @@
 import Button from '@/app/components/Button/Button';
 import FilterItem from '@/app/components/FilterAndSortList/FilterItem';
 import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css';
-import { filters as FILTER_CONFIG } from '@/data/filters';
+import { sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
 import { clearFilters, toggleFilter } from '@/redux/features/filter/filterSlice';
 import { setSort } from '@/redux/features/sort/sortSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export function FilterAndSortList() {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   
   const { selectedFilters, selectedFilterCount } = useAppSelector(state => state.filter);
   const { sortBy } = useAppSelector(state => state.sort);
+
+  const updateSearchParams = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value);
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <div className={styles.sort}>
@@ -25,7 +34,7 @@ export function FilterAndSortList() {
       </div>
 
       <div className="filter-panel">
-        {FILTER_CONFIG.map(({ title, key, options, type }) => (
+        {SORT_FILTER_CONFIG.map(({ title, key, options, type }) => (
           <FilterItem
             key={title}
             title={title}
@@ -37,9 +46,12 @@ export function FilterAndSortList() {
                 : selectedFilters[key]
             }
             onChange={(option) => {
-              type === 'radio'
-                ? dispatch(setSort(option))
-                : dispatch(toggleFilter({ key, value: option }));
+              if (type === 'radio') {
+                dispatch(setSort(option));
+                updateSearchParams('sort', option);
+              } else {
+                dispatch(toggleFilter({ key, value: option }));
+              }
             }}
           />
         ))}

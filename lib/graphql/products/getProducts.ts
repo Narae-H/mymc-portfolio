@@ -1,6 +1,6 @@
 export const GET_PRODUCTS_QUERY = `
-  query GetProducts($first: Int = 100, $query: String, $cursor: String) {
-    products(first: $first, query: $query, after: $cursor) {
+  query GetProducts($first: Int = 100, $query: String, $cursor: String, $sortKey: ProductSortKeys, $reverse: Boolean) {
+    products(first: $first, query: $query, after: $cursor, sortKey: $sortKey, reverse: $reverse) {
       pageInfo {
         hasNextPage
         endCursor
