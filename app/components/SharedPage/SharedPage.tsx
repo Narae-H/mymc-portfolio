@@ -17,10 +17,9 @@ import { useAppSelector } from '@/redux/hooks';
 type Props = {
   initialProducts: Product[];
   handle?: string; 
-  queryParams?: Record<string, string | number | boolean | string[]>;
 }
 
-export default function SharedPage({ initialProducts, handle, queryParams }: Props) {
+export default function SharedPage({ initialProducts, handle}: Props) {
   const filters = useAppSelector(selectSelectedFilters);
   const sortBy = useAppSelector(state => state.sort.sortBy);
 
