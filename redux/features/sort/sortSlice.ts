@@ -1,11 +1,13 @@
+import { ValidSortKey } from "@/data/sortConfig";
+import { isMetafieldSortKey, isShopifySortKey } from "@/lib/utils/typeGuards";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SortState {
-  sortBy: string;
+  sortBy: ValidSortKey;
 }
 
 const initialState: SortState = {
-  sortBy: 'Featured'
+  sortBy: 'Top sellers'
 }
 
 const sortSlice = createSlice({
@@ -13,7 +15,9 @@ const sortSlice = createSlice({
   initialState,
   reducers: {
     setSort(state, action: PayloadAction<string>) {
-      state.sortBy = action.payload;
+      if (isShopifySortKey(action.payload) || isMetafieldSortKey(action.payload)) {
+        state.sortBy = action.payload;
+      }
     },
     resetSort(state){
       state.sortBy = initialState.sortBy;

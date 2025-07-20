@@ -76,6 +76,7 @@ mymc-portfolio
 │
 ├── 📁 lib                             # Pure logic helpers (e.g., parsing, formatting, tree builders)
 │   ├── 📁 graphql                     # GraphQL query definitions for Shopify
+│   ├── 📁 hooks                       # Custom hooks
 │   ├── 📁 parsers                     # Data transformers for API responses
 │   └── 📁 utils                       # General utility functions
 │
@@ -88,27 +89,28 @@ mymc-portfolio
 └── 📄 .env.local                      # Environment variables for local development
 ```
 
+<br/>
+
 # Known Issues & Solutions
-## 1. Hybrid Structure (SSR + Client-side Fetch)
-I chose a **hybrid architecture**—combining server-side rendering (SSR) with client-side fetching—to enhance performance, SEO, and state synchronisation.  
-- Initial Load (SSR):
-  - Data is fetched on the server, producing pre-rendered HTML.
-  - Users see meaningful content immediately, reducing time to first paint.
-  - Search engines can easily index the full content, which is excellent for SEO 
-- Interactions (Client-side Fetch):
-  - When filters or sort options change, the updated data is fetched client-side.
-  - This enables quick, dynamic updates without a full page reload.
-  - It keeps the UI responsive and seamless, with Redux state fully synchronised with displayed content
+## 1. Get Products with Sorting and Filtering
+### Issues
+- `Data fetching strategy`: To improve SEO and provide a better user experience (e.g., faster initial load), it was necessary to decide how to fetch product data: using CSR (Client-Side Rendering), SSR (Server-Side Rendering), or a hybrid approach.
+- `Sorting`: Shopify supports basic sorting options (e.g., price, alphabetical order), but it does not support custom sorting based on metafields I created.
+- `Filtering`:
+  - The **top section** of the sidebar works like sub-menus (e.g., /pro-meals, /high-protein-meals) and follows a RESTful URL structure.
+  - The **bottom section** provides filtering options based on custom metafields, such as dietary preference or protein type.
 
-### Why this Hybrid Approach is Ideal
-| Benefit               | Details                                                                                                          |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **Fast initial load** | SSR deliversHTML content on page load, improving perceived performance and Core Web Vitals ([DEV Community][1]). |
-| **SEO-friendly**      | Pre-rendered content is fully indexable by search engines, boosting visibility .                                 |
-| **Dynamic UX**        | Client-side fetch on interactions keeps experience smooth and interactive.                                       |
-| **State consistency** | Redux can orchestrate filters and sort state to automatically trigger data updates.                              |
-
-[1]: https://dev.to/abhay_yt_52a8e72b213be229/maximizing-performance-and-seo-with-server-side-rendering-ssr-in-nextjs-9ih?utm_source=chatgpt.com "Maximizing Performance and SEO with Server-Side Rendering (SSR) in Next.js"
+### Solutions
+- `Data fetching strategy`: → Chose a **hybrid** approach. ([Maximizing Performance and SEO with Server-Side Rendering (SSR) in Next.js](https://dev.to/abhay_yt_52a8e72b213be229/maximizing-performance-and-seo-with-server-side-rendering-ssr-in-nextjs-9ih?utm_source=chatgpt.com))
+  - *Reason*: Product data is initially fetched server-side (SSR) to improve SEO and initial load speed. After the initial render, client-side updates (CSR) are used for smoother interactions like filtering or sorting.
+- `Sorting`:
+  - **Shopify-supported options**: Sorting parameters (e.g., price, title) are passed directly to the Shopify query to fetch sorted data.
+  - **Custom metafield-based options**: For unsupported options, data is fetched normally and then sorted client-side using metafield values.
+- `Filtering`:
+  - **Top section** (submenu style): Created metafields and corresponding collections (e.g., /pro-meals) in Shopify to fetch relevant products efficiently using predefined queries.
+    - *Reason*: Using collections improves performance and makes URLs SEO-friendly.
+  - **Bottom section** (custom filters): Filtering options are applied by passing selected metafield values to the product-fetching function.
+    - *Reason*: Allows dynamic and flexible filtering without needing to predefine all possible combinations.
 
 <br/>
 

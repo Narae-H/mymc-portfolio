@@ -1,11 +1,16 @@
-import SharedPage from '@/app/components/SharedPage/SharedPage';
 import { fetchProducts } from '@/api/products';
-import { Product } from '@/models/product';
+import SharedPage from '@/app/components/SharedPage/SharedPage';
+import { autoParseQueryParams } from '@/lib/utils/parseQueryParams';
 
-export default async function Home() {
-  const initialProducts: Product[] = await fetchProducts();
+type Props = { 
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function Home({ searchParams }: Props) {
+  const { products } = await fetchProducts();
+  const queryParams = autoParseQueryParams(searchParams);
 
   return (
-    <SharedPage initialProducts = {initialProducts}/>
+    <SharedPage initialProducts = {products} queryParams= {queryParams}/>
   );
 }

@@ -1,3 +1,5 @@
+import { Metafield } from "@/models/metafield";
+
 export interface Product {
   id: string;
   title: string;
@@ -15,4 +17,8 @@ export interface Product {
   imageAlt: string;
   price: number;
   currency: string;
+}
+
+export interface ProductWithMetafields extends Product {
+  metafields: Metafield[];
 }
