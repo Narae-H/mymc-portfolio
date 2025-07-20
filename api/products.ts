@@ -1,36 +1,56 @@
 
-import { GET_PRODUCTS_QUERY, GET_COLLECTION_WITH_PRODUCTS_QUERY } from '@/lib/graphql/products/index';
 import { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/index';
+import { GET_COLLECTION_WITH_PRODUCTS_QUERY, GET_PRODUCTS_QUERY } from '@/lib/graphql/products/index';
 
-import { parseProduct } from '@/lib/parsers/parseProduct';
 import { shopifyFetch } from '@/api/shopify';
+import { SHOPIFY_SORT_CONFIG, ValidSortKey } from '@/data/sortConfig';
+import { parseProduct } from '@/lib/parsers/parseProduct';
+import { buildQuery } from '@/lib/utils/buildQuery';
+import { FilterValues } from '@/models/filter';
 import { MealType } from '@/models/meal';
 import { Product } from '@/models/product';
+import { isShopifySortKey } from '@/lib/utils/typeGuards';
 
-interface FetchProductsOptions {
-  keyword?: string;
+interface FetchProductsParams {
+  handle?: string;
+  filters?: FilterValues;
+  sortBy?: ValidSortKey;
   cursor?: string;
 }
 
-export async function fetchProducts(options?: FetchProductsOptions) {
-  const keyword = options?.keyword;
-  const cursor = options?.cursor;
+export async function fetchProducts(options: FetchProductsParams = {}) {
+  const { filters, sortBy, cursor, handle } = options;
   
-  // TODO: 나중에 filter & sort 대비하여 만들어 놓음
-  const queryString = keyword
-  ? `metafield.namespace:meal AND metafield.key:type AND metafield.value:${keyword}`
-  : '';
+  const shopifySortConfig =
+  sortBy && isShopifySortKey(sortBy)
+    ? SHOPIFY_SORT_CONFIG[sortBy]
+    : undefined;
 
+  const useShopifySort = !!shopifySortConfig;
+  
   const variables = {
     first: 100,
-    query: queryString || undefined,
-    cursor: cursor || undefined
+    query: buildQuery(filters),
+    cursor: cursor || undefined,
+    sortKey: useShopifySort ? shopifySortConfig?.sortKey : undefined,
+    reverse: useShopifySort ? shopifySortConfig?.reverse : undefined
   };
 
-  const data: any = await shopifyFetch(GET_PRODUCTS_QUERY, variables);
-  const products: Product[] = data.products.edges.map((edge: any) => parseProduct(edge.node));
+  let products: Product[] = [];
+  if ( handle ) {
+    const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: handle });
+    products =  data.collection.products.edges.map((edge: any) => parseProduct(edge.node));
+    
+  } else {
+    const data: any = await shopifyFetch(GET_PRODUCTS_QUERY, variables);
+    products =  data.products.edges.map((edge: any) => parseProduct(edge.node));
+  }
 
-  return products;
+  return {
+    products,
+    needsClientSort: !useShopifySort && !!sortBy,
+    sortBy
+  };
 }
 
 export async function fetchProductMealTypesTree() {
@@ -43,11 +63,4 @@ export async function fetchProductMealTypesTree() {
                                                     }));
 
   return mealTypes;
-}
-
-export async function fetchCollectionWithProducts( options?: FetchProductsOptions ) {
-  const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: options?.keyword });
-  const products: Product[] = data.collection.products.edges.map((edge: any) => parseProduct(edge.node));
-
-  return products;
 }

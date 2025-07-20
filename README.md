@@ -37,8 +37,8 @@ You can view the live demo here: [https://mymc-portfolio.vercel.app](https://mym
 
 | **Category**       | **Stack / Tools**                                  | **Notes / Details**                                           |
 |-------------------|-----------------------------------------------------|---------------------------------------------------------------|
-| **Frontend**       | Next.js 14, React 18, TypeScript                    | Core technologies used for UI rendering and routing           |
-| **State Management** | React Hooks (`useState`, `useEffect`)            | Lightweight, local state handling                            |
+| **Frontend**       | Next.js 15, React 19, TypeScript                    | Core technologies used for UI rendering and routing           |
+| **State Management** | React Hooks (`useState`, `useEffect`)<br/> Reduct Toolkit (RTK), React-Redux (`useSelector`, `useDispatch`)  | Lightweight, local state handling                            |
 | **API Communication** | Fetch API, Axios                                 | REST/GraphQL fetch support                                   |
 | **Styling**        | CSS Modules, Custom CSS, Media Queries             | No Tailwind or Styled Components – styled manually            |
 | **Icons**          | React Icons                                        | Lightweight, flexible icon usage                             |
@@ -46,7 +46,7 @@ You can view the live demo here: [https://mymc-portfolio.vercel.app](https://mym
 | **Deployment**     | Vercel                                             | Simple, free deployment for Next.js projects                  |
 <br/>
 
-# Folder Structure
+# Key Folder Structure
 ```bash
 mymc-portfolio
 ├── 📁 .github                         # GitHub configuration and templates for collaboration
@@ -68,13 +68,15 @@ mymc-portfolio
 │   ├── 📁 styles                      # CSS Modules for component-level styling
 │   ├── 📄 layout.tsx                  
 │   ├── 📄 loading.tsx                  
-│   └── 📄 page.tsx                    
+│   ├── 📄 page.tsx                  
+│   └── 📄 StoreProvider.tsx           # Redux provider component         
 │
 ├── 📁 data                            # Static data used in components
 │   └── 📄 filters.ts                  # Sidebar menu data (e.g., meal categories)
 │
 ├── 📁 lib                             # Pure logic helpers (e.g., parsing, formatting, tree builders)
 │   ├── 📁 graphql                     # GraphQL query definitions for Shopify
+│   ├── 📁 hooks                       # Custom hooks
 │   ├── 📁 parsers                     # Data transformers for API responses
 │   └── 📁 utils                       # General utility functions
 │
@@ -82,7 +84,33 @@ mymc-portfolio
 │
 ├── 📁 public                          # Static assets
 │
+├── 📁 redux                           # State management
+│
 └── 📄 .env.local                      # Environment variables for local development
 ```
+
+<br/>
+
+# Known Issues & Solutions
+## 1. Get Products with Sorting and Filtering
+### Issues
+- `Data fetching strategy`: To improve SEO and provide a better user experience (e.g., faster initial load), it was necessary to decide how to fetch product data: using CSR (Client-Side Rendering), SSR (Server-Side Rendering), or a hybrid approach.
+- `Sorting`: Shopify supports basic sorting options (e.g., price, alphabetical order), but it does not support custom sorting based on metafields I created.
+- `Filtering`:
+  - The **top section** of the sidebar works like sub-menus (e.g., /pro-meals, /high-protein-meals) and follows a RESTful URL structure.
+  - The **bottom section** provides filtering options based on custom metafields, such as dietary preference or protein type.
+
+### Solutions
+- `Data fetching strategy`: → Chose a **hybrid** approach. ([Maximizing Performance and SEO with Server-Side Rendering (SSR) in Next.js](https://dev.to/abhay_yt_52a8e72b213be229/maximizing-performance-and-seo-with-server-side-rendering-ssr-in-nextjs-9ih?utm_source=chatgpt.com))
+  - *Reason*: Product data is initially fetched server-side (SSR) to improve SEO and initial load speed. After the initial render, client-side updates (CSR) are used for smoother interactions like filtering or sorting.
+- `Sorting`:
+  - **Shopify-supported options**: Sorting parameters (e.g., price, title) are passed directly to the Shopify query to fetch sorted data.
+  - **Custom metafield-based options**: For unsupported options, data is fetched normally and then sorted client-side using metafield values.
+- `Filtering`:
+  - **Top section** (submenu style): Created metafields and corresponding collections (e.g., /pro-meals) in Shopify to fetch relevant products efficiently using predefined queries.
+    - *Reason*: Using collections improves performance and makes URLs SEO-friendly.
+  - **Bottom section** (custom filters): Filtering options are applied by passing selected metafield values to the product-fetching function.
+    - *Reason*: Allows dynamic and flexible filtering without needing to predefine all possible combinations.
+
 <br/>
 

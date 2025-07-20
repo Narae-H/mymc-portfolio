@@ -8,6 +8,7 @@ import Header from '@/app/components/TopHeader/TopHeader';
 import StickyHeader from "@/app/components/StickyHeader/StickyHeader";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
 import ProgressBar from "@/app/components/ProgressBar/ProgressBar";
+import StoreProvider from "./StoreProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,20 +34,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header />
-        <div>
-          <StickyHeader />
-          <main className='main container'>
-            <div className='layoutRow'>
-              <aside className='sidebar'>
-                <Sidebar />
-              </aside>
-              {children}
-            </div>
-          </main>
-          <ProgressBar />
-          <Footer />
-        </div>
+        <StoreProvider>
+          <Header />
+          <div>
+            <StickyHeader />
+            <main className='main container'>
+              <div className='layoutRow'>
+                <aside className='sidebar'>
+                  <Sidebar />
+                </aside>
+                {children}
+              </div>
+            </main>
+            <ProgressBar />
+            <Footer />
+          </div>
+        </StoreProvider>
       </body>
     </html>
   );

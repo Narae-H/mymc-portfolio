@@ -1,11 +1,10 @@
-export const filters = [
+export const sortAndFilters = [
   {
     title: 'Sort',
+    key: 'sort',
     type: 'radio',
     options: [
-      'Featured',
       'Top sellers',
-      'Most liked',
       'New',
       'Price (Low to High)',
       'Price (High to Low)',
@@ -20,26 +19,31 @@ export const filters = [
   },
   {
     title: 'Preferences',
+    key: 'preferences',
     type: 'checkbox',
     options: ['Keto', 'Vegan', 'Dairy-Free'],
   },
   {
     title: 'Protein Type',
+    key: 'proteinType',
     type: 'checkbox',
     options: ['Chicken', 'Beef', 'Plant'],
   },
   {
     title: 'Carbs',
+    key: 'carbs',
     type: 'checkbox',
     options: ['<20g', '20–40g', '>40g'],
   },
   {
     title: 'Calories',
+    key: 'calories',
     type: 'checkbox',
     options: ['<300', '300–500', '>500'],
   },
   {
     title: 'Dietary',
+    key: 'dietary',
     type: 'checkbox',
     options: ['Gluten-Free', 'No Added Sugar'],
   },

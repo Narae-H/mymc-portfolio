@@ -1,17 +1,16 @@
-import SharedPage from '@/app/components/SharedPage/SharedPage';
 import { fetchProducts } from '@/api/products';
-import { Product } from '@/models/product';
+import SharedPage from '@/app/components/SharedPage/SharedPage';
+import { autoParseQueryParams } from '@/lib/utils/parseQueryParams';
 
 type Props = { 
-  params: Promise<{ handle: string }> ;
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// TODO: 1) 전역 상태 관리를 위해서 Redux Toolkit 사용 필요
-export default async function Home({ params }: Props) {
-  const products: Product[] = await fetchProducts();
+export default async function Home({ searchParams }: Props) {
+  const { products } = await fetchProducts();
+  const queryParams = autoParseQueryParams(searchParams);
 
   return (
-    <SharedPage products = {products}/>
+    <SharedPage initialProducts = {products} queryParams= {queryParams}/>
   );
 }
-

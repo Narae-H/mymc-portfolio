@@ -1,16 +1,18 @@
+import { fetchProducts } from '@/api/products';
 import SharedPage from '@/app/components/SharedPage/SharedPage';
-import { fetchCollectionWithProducts } from '@/api/products';
-import { Product } from '@/models/product';
+import { autoParseQueryParams } from '@/lib/utils/parseQueryParams';
 
 type Props = { 
   params: Promise<{ handle: string }> ;
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default async function CollectionPage({ params }: Props) {
+export default async function CollectionPage({ params, searchParams }: Props) {
   const { handle } = await params;
-  const products: Product[] = await fetchCollectionWithProducts( {keyword: handle} );
+  const queryParams = autoParseQueryParams(searchParams);
+  const { products } = await fetchProducts({ handle });
 
   return (
-    <SharedPage products = {products}/>
+    <SharedPage initialProducts = {products} handle = {handle} queryParams= {queryParams}/>
   );
 }
