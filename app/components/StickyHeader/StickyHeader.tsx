@@ -12,7 +12,7 @@ export default function StickyHeader() {
   return (
     <header className={styles.stickyWrapper}>
       <div className={`${styles.headerContainer} container`}>
-        <a className={styles.headerLogo}>
+        <a href="/" className={styles.headerLogo}>
           <img alt="My Muscle Chef" loading="lazy" decoding="async" data-nimg="1" src="https://www.datocms-assets.com/81001/1666837322-01_mymc_blk.svg"/>
         </a>
         <div className={styles.headerMenus}>
