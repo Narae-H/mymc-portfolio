@@ -3,25 +3,36 @@
 import Button from '@/app/components/Button/Button';
 import FilterItem from '@/app/components/FilterAndSortList/FilterItem';
 import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css';
-import { sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
+import { DEFAULT_FILTER_VALUES, sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
+import { getSlugByLabel } from '@/lib/utils/sortFilterUtils';
 import { clearFilters, toggleFilter } from '@/redux/features/filter/filterSlice';
 import { setSort } from '@/redux/features/sort/sortSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export function FilterAndSortList() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  // const searchParams = useSearchParams();
   
-  const { selectedFilters, selectedFilterCount } = useAppSelector(state => state.filter);
   const { sortBy } = useAppSelector(state => state.sort);
+  const { selectedFilters, selectedFilterCount } = useAppSelector(state => state.filter);
 
-  // const updateSearchParams = (key: string, value: string) => {
-  //   const params = new URLSearchParams(searchParams.toString());
-  //   params.set(key, value);
-  //   router.push(`?${params.toString()}`, { scroll: false });
-  // };
+  useEffect( () => {
+    const params = new URLSearchParams();
+
+    params.set('sort', sortBy.toString() );
+
+    Object.entries(selectedFilters).forEach(([key, values]) => {
+      if (values.length > 0) {
+        params.set(key, values.join(','));
+      }
+    });
+
+    const pathname = window.location.pathname;
+    router.push(`${pathname}?${params.toString()}`);
+
+  }, [sortBy, selectedFilters]);
 
   return (
     <div className={styles.sort}>
@@ -48,7 +59,6 @@ export function FilterAndSortList() {
             onChange={(option) => {
               if (type === 'radio') {
                 dispatch(setSort(option));
-                // updateSearchParams('sort', option);
               } else {
                 dispatch(toggleFilter({ key, value: option }));
               }

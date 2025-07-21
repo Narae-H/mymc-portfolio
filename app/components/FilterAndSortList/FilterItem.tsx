@@ -7,7 +7,7 @@ import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.
 interface Props {
   title: string;
   type: 'radio' | 'checkbox';
-  options: readonly string[];
+  options: readonly {label: string, slug: string}[];
   selected?: string[];
   onChange?: (option: string) => void;
 }
@@ -26,15 +26,15 @@ export default function FilterItem({ title, type, options, selected = [], onChan
       {isOpen && (
         <ul className={`${sidebarStyles.list} ${styles.list}`}>
           {options.map((option) => (
-            <li key={option}>
+            <li key={option.slug}>
               <label>
                 <input
                   type={type}
                   name={title}
-                  checked={isChecked(type, option, selected)}
-                  onChange={() => handleChange(option)}
+                  checked={isChecked(type, option.slug, selected)}
+                  onChange={() => handleChange(option.slug)}
                 />
-                <span>{option}</span>
+                <span>{option.label}</span>
               </label>
             </li>
           ))}

@@ -1,4 +1,3 @@
-
 import { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/index';
 import { GET_COLLECTION_WITH_PRODUCTS_QUERY, GET_PRODUCTS_QUERY } from '@/lib/graphql/products/index';
 

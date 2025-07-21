@@ -1,3 +1,4 @@
+import { DEFAULT_FILTER_VALUES } from "@/data/sortAndFilters";
 import { ValidSortKey } from "@/data/sortConfig";
 import { isMetafieldSortKey, isShopifySortKey } from "@/lib/utils/typeGuards";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -7,7 +8,7 @@ interface SortState {
 }
 
 const initialState: SortState = {
-  sortBy: 'Top sellers'
+  sortBy: DEFAULT_FILTER_VALUES.sort
 }
 
 const sortSlice = createSlice({
