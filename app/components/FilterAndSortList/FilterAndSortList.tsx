@@ -3,13 +3,12 @@
 import Button from '@/app/components/Button/Button';
 import FilterItem from '@/app/components/FilterAndSortList/FilterItem';
 import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css';
-import { DEFAULT_FILTER_VALUES, sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
-import { getSlugByLabel } from '@/lib/utils/sortFilterUtils';
+import { sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
+import useDidMountEffect from '@/lib/hooks/useDidMountEffect';
 import { clearFilters, toggleFilter } from '@/redux/features/filter/filterSlice';
 import { setSort } from '@/redux/features/sort/sortSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 export function FilterAndSortList() {
   const dispatch = useAppDispatch();
@@ -18,7 +17,7 @@ export function FilterAndSortList() {
   const { sortBy } = useAppSelector(state => state.sort);
   const { selectedFilters, selectedFilterCount } = useAppSelector(state => state.filter);
 
-  useEffect( () => {
+  useDidMountEffect( () => {
     const params = new URLSearchParams();
 
     params.set('sort', sortBy.toString() );

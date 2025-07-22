@@ -5,6 +5,7 @@ type Props = {
   params: Promise<{ handle: string }>;
 };
 
+// TODO: page.tsx참고해서 searchParams 받아와서 sort, filter 부분 추가해야함.
 export default async function CollectionPage({ params}: Props) {
   const { handle } = await params;
   const { products } = await fetchProducts({ handle });

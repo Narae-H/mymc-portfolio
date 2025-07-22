@@ -2,34 +2,31 @@ import { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/index';
 import { GET_COLLECTION_WITH_PRODUCTS_QUERY, GET_PRODUCTS_QUERY } from '@/lib/graphql/products/index';
 
 import { shopifyFetch } from '@/api/shopify';
-import { SHOPIFY_SORT_CONFIG, ValidSortKey } from '@/data/sortConfig';
+import { SHOPIFY_SORT_CONFIG, SortKeyValues } from '@/data/sortConfig';
 import { parseProduct } from '@/lib/parsers/parseProduct';
-import { buildQuery } from '@/lib/utils/buildQuery';
+import { isShopifySortKey } from '@/lib/utils/typeGuards';
 import { FilterValues } from '@/models/filter';
 import { MealType } from '@/models/meal';
 import { Product } from '@/models/product';
-import { isShopifySortKey } from '@/lib/utils/typeGuards';
 
 interface FetchProductsParams {
   handle?: string;
   filters?: FilterValues;
-  sortBy?: ValidSortKey;
+  sortBy?: SortKeyValues;
   cursor?: string;
 }
 
 export async function fetchProducts(options: FetchProductsParams = {}) {
-  const { filters, sortBy, cursor, handle } = options;
+  const { sortBy, cursor, handle } = options;
   
   const shopifySortConfig =
-  sortBy && isShopifySortKey(sortBy)
-    ? SHOPIFY_SORT_CONFIG[sortBy]
-    : undefined;
-
+    sortBy && isShopifySortKey(sortBy)
+      ? SHOPIFY_SORT_CONFIG[sortBy]
+      : undefined;
   const useShopifySort = !!shopifySortConfig;
   
   const variables = {
     first: 100,
-    query: buildQuery(filters),
     cursor: cursor || undefined,
     sortKey: useShopifySort ? shopifySortConfig?.sortKey : undefined,
     reverse: useShopifySort ? shopifySortConfig?.reverse : undefined
@@ -46,9 +43,7 @@ export async function fetchProducts(options: FetchProductsParams = {}) {
   }
 
   return {
-    products,
-    needsClientSort: !useShopifySort && !!sortBy,
-    sortBy
+    products
   };
 }
 

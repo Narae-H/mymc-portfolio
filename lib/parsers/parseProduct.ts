@@ -30,6 +30,7 @@ export function parseProduct(raw: any): Product {
     imageURL: raw.images.edges[0].node.url,
     imageAlt: imageNode?.altText || raw.title,
     price: variantNode?.price?.amount || 0.00,
-    currency: variantNode?.price?.currencyCode || 'AUD'
+    currency: variantNode?.price?.currencyCode || 'AUD',
+    proteinType: metafieldsMap['filter.protein_type']? metafieldsMap['filter.protein_type'].split(',').map(s => s.trim().toLowerCase()): []
   };
 }

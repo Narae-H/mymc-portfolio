@@ -1,9 +1,9 @@
-import { METAFIELD_SORT_CONFIG } from "@/data/sortConfig";
+import { METAFIELD_SORT_CONFIG, SortKeyValues } from "@/data/sortConfig";
 import { Product } from "@/models/product";
 
 export function clientSortProducts (
   products: Product[], 
-  sortBy: string
+  sortBy: SortKeyValues
  ): Product[] {
   if( sortBy && sortBy in METAFIELD_SORT_CONFIG ) {
     return metafieldSort(products, sortBy as keyof typeof METAFIELD_SORT_CONFIG);
@@ -23,11 +23,3 @@ function metafieldSort(
     return direction === 'asc' ? aValue - bValue : bValue - aValue;
   });
 }
-
-
-
-
-
-
-
-

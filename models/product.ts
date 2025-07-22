@@ -17,6 +17,7 @@ export interface Product {
   imageAlt: string;
   price: number;
   currency: string;
+  proteinType: string[];
 }
 
 export interface ProductWithMetafields extends Product {

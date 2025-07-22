@@ -32,9 +32,13 @@ export const sortAndFilters = [
     key: 'proteinType',
     type: 'checkbox',
     options: [
-      { label: 'Chicken', slug: 'chicken' },
       { label: 'Beef', slug: 'beef' },
-      { label: 'Plant', slug: 'plant' },
+      { label: 'Chicken', slug: 'chicken' },
+      { label: 'Lamb', slug: 'lamb' },
+      { label: 'Pork', slug: 'pork' },
+      { label: 'Turkey', slug: 'turkey' },
+      { label: 'Kangaroo', slug: 'kangaroo' },
+      { label: 'Vegetarian', slug: 'vegetarian' },
     ],
   },
   {
@@ -52,8 +56,8 @@ export const sortAndFilters = [
     key: 'calories',
     type: 'checkbox',
     options: [
-      { label: '<300', slug: 'lt300' },
-      { label: '300–500', slug: '300-500' },
+      { label: '<400', slug: 'lt400' },
+      { label: '400–500', slug: '400-500' },
       { label: '>500', slug: 'gt500' },
     ],
   },

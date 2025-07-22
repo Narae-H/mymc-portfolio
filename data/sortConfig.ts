@@ -17,6 +17,6 @@ export const METAFIELD_SORT_CONFIG = {
   'carbs-high-to-low': { key: 'carbs', direction: 'desc' },
 } as const;
 
-export type ValidSortKey =
+export type SortKeyValues =
   | keyof typeof SHOPIFY_SORT_CONFIG
   | keyof typeof METAFIELD_SORT_CONFIG;
