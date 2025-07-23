@@ -38,7 +38,9 @@ export const GET_PRODUCTS_QUERY = `
             { namespace: "details", key: "ingredients" },
             { namespace: "details", key: "nutritional_info" },
             { namespace: "details", key: "instructions" },
-            { namespace: "filter", key: "protein_type" }
+            { namespace: "filter", key: "protein_type" },
+            { namespace: "filter", key: "preferences" },
+            { namespace: "filter", key: "dietary" }
           ]) {
             namespace
             key

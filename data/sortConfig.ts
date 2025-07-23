@@ -2,7 +2,7 @@ export type ShopifySortKey = 'TITLE' | 'PRICE' | 'CREATED_AT' | 'BEST_SELLING';
 
 export const SHOPIFY_SORT_CONFIG = {
   'top-sellers': { sortKey: 'BEST_SELLING', reverse: false },
-  'new': { sortKey: 'CREATED_AT', reverse: true },
+  'new': { sortKey: 'CREATED', reverse: true },
   'price-low-to-high': { sortKey: 'PRICE', reverse: false },
   'price-high-to-low': { sortKey: 'PRICE', reverse: true },
   'name-az': { sortKey: 'TITLE', reverse: false },

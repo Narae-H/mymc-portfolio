@@ -22,9 +22,15 @@ export const sortAndFilters = [
     key: 'preferences',
     type: 'checkbox',
     options: [
-      { label: 'Keto', slug: 'keto' },
-      { label: 'Vegan', slug: 'vegan' },
-      { label: 'Dairy-Free', slug: 'dairy-free' },
+      { label: 'Low Calorie', slug: 'low-calorie' },
+      { label: 'Low Carb', slug: 'low-carb' },
+      { label: 'Muscle Building', slug: 'muscle-building' },
+      { label: 'Plant Based', slug: 'plant-based' },
+      { label: 'Italian', slug: 'italian' },
+      { label: 'Asian', slug: 'asian' },
+      { label: 'Aussie Classics', slug: 'aussie-classics' },
+      { label: 'Mexican', slug: 'mexican' },
+      { label: 'Indian', slug: 'indian' },
     ],
   },
   {
@@ -66,8 +72,11 @@ export const sortAndFilters = [
     key: 'dietary',
     type: 'checkbox',
     options: [
-      { label: 'Gluten-Free', slug: 'gluten-free' },
-      { label: 'No Added Sugar', slug: 'no-added-sugar' },
+      { label: 'No Added Dairy', slug: 'no-added-dairy' },
+      { label: 'No Added Eggs', slug: 'no-added-eggs' },
+      { label: 'No Added Gluten', slug: 'no-added-gluten' },
+      { label: 'No Added Nuts', slug: 'no-added-nuts' },
+      { label: 'No Added Seafood', slug: 'no-added-seafood' },
     ],
   },
 ] as const;

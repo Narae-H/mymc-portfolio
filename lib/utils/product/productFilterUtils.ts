@@ -5,9 +5,14 @@ export function clientFiltersProducts (
   products: Product[], 
   filters: FilterValues
  ): Product[] {
-   // TODO: Preferences, Dietary 필터 로직 짜야함
   return products.filter(product => {
     // Preferences
+    if(filters.preferences.length > 0) {
+      const isMatch = filters.preferences.some(fp => {
+        return product.preferences.includes(fp.toLowerCase())
+      });
+      if (!isMatch) return false;
+    }
     
     // Protein Type
     if (filters.proteinType.length > 0) {
@@ -52,6 +57,12 @@ export function clientFiltersProducts (
     }
 
     // Dietary
+    if (filters.dietary.length > 0) {
+      const isMatch = filters.dietary.some(fp => {
+        return product.dietary.includes(fp.toLowerCase())
+      });
+      if (!isMatch) return false;
+    }
 
     return true;
   });

@@ -14,11 +14,6 @@ export default async function Home( {searchParams} : Props ) {
   const sortBy: SortKeyValues = parseSortByFromParams(parsedParams);
   const filters: FilterValues = parseFiltersFromParams(parsedParams);
 
-  console.log("---Home----");
-  console.log(sortBy); 
-  console.log(filters); 
-  console.log("---Home----");
-
   const { products } = await fetchProducts({ sortBy, filters });
   const sortedFilteredProducts = applyClientSortAndFilterFromUrlParams(products, sortBy, filters);
 

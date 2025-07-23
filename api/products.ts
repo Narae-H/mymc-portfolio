@@ -31,10 +31,10 @@ export async function fetchProducts(options: FetchProductsParams = {}) {
     sortKey: useShopifySort ? shopifySortConfig?.sortKey : undefined,
     reverse: useShopifySort ? shopifySortConfig?.reverse : undefined
   };
-
+  
   let products: Product[] = [];
   if ( handle ) {
-    const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: handle });
+    const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: handle, ...variables });
     products =  data.collection.products.edges.map((edge: any) => parseProduct(edge.node));
     
   } else {
