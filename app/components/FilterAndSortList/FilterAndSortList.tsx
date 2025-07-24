@@ -1,12 +1,11 @@
 'use client'
 
 import Button from '@/app/components/Button/Button';
-import FilterItem from '@/app/components/FilterAndSortList/FilterItem';
+import FilterItem from '@/app/components/FilterAndSortList/FilterItem/FilterItem';
 import styles from '@/app/components/FilterAndSortList/filterAndSortList.module.css';
 import { sortAndFilters as SORT_FILTER_CONFIG } from '@/data/sortAndFilters';
 import useDidMountEffect from '@/lib/hooks/useDidMountEffect';
-import { clearFilters, toggleFilter } from '@/redux/features/filter/filterSlice';
-import { setSort } from '@/redux/features/sort/sortSlice';
+import { clearFilters } from '@/redux/features/filter/filterSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/navigation';
 
@@ -44,24 +43,18 @@ export function FilterAndSortList() {
       </div>
 
       <div className="filter-panel">
-        {SORT_FILTER_CONFIG.map(({ title, key, options, type }) => (
+        {SORT_FILTER_CONFIG.map(({ title, paramKey, options, type }) => (
           <FilterItem
             key={title}
+            paramKey = {paramKey}
             title={title}
             type={type}
             options={options}
             selected={
               type === 'radio'
                 ? [sortBy]
-                : selectedFilters[key]
+                : selectedFilters[paramKey]
             }
-            onChange={(option) => {
-              if (type === 'radio') {
-                dispatch(setSort(option));
-              } else {
-                dispatch(toggleFilter({ key, value: option }));
-              }
-            }}
           />
         ))}
       </div>

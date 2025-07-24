@@ -18,10 +18,10 @@ export function parseFiltersFromParams (params: Record<string, string>): FilterV
   const filterValues: Partial<FilterValues> = {};
 
   for( const filter of sortAndFilters ) {
-    if( filter.key === 'sort') continue;
+    if( filter.paramKey === 'sort') continue;
     
-    const value = params[filter.key];
-    filterValues[filter.key as keyof FilterValues] = value? value.split(',') : [];
+    const value = params[filter.paramKey];
+    filterValues[filter.paramKey as keyof FilterValues] = value? value.split(',') : [];
   }
 
   return filterValues as FilterValues;

@@ -2,9 +2,9 @@ import { GET_PRODUCT_MEAL_TYPES_QUERY } from '@/lib/graphql/menus/index';
 import { GET_COLLECTION_WITH_PRODUCTS_QUERY, GET_PRODUCTS_QUERY } from '@/lib/graphql/products/index';
 
 import { shopifyFetch } from '@/api/shopify';
-import { SHOPIFY_SORT_CONFIG, SortKeyValues } from '@/data/sortConfig';
+import { COLLECTION_SORT_CONFIG, PRODUCT_SORT_CONFIG, SortKeyValues } from '@/data/sortConfig';
 import { parseProduct } from '@/lib/parsers/parseProduct';
-import { isShopifySortKey } from '@/lib/utils/typeGuards';
+import { isShopifyCollectionSortKey, isShopifyProductSortKey } from '@/lib/utils/typeGuards';
 import { FilterValues } from '@/models/filter';
 import { MealType } from '@/models/meal';
 import { Product } from '@/models/product';
@@ -18,26 +18,33 @@ interface FetchProductsParams {
 
 export async function fetchProducts(options: FetchProductsParams = {}) {
   const { sortBy, cursor, handle } = options;
+
+  const productSortConfig = sortBy && isShopifyProductSortKey(sortBy) ? PRODUCT_SORT_CONFIG[sortBy] : undefined;
+  const collectionSortConfig = sortBy && isShopifyCollectionSortKey(sortBy) ? COLLECTION_SORT_CONFIG[sortBy] : undefined;
   
-  const shopifySortConfig =
-    sortBy && isShopifySortKey(sortBy)
-      ? SHOPIFY_SORT_CONFIG[sortBy]
-      : undefined;
-  const useShopifySort = !!shopifySortConfig;
-  
-  const variables = {
+  const commonVariables = {
     first: 100,
     cursor: cursor || undefined,
-    sortKey: useShopifySort ? shopifySortConfig?.sortKey : undefined,
-    reverse: useShopifySort ? shopifySortConfig?.reverse : undefined
   };
   
   let products: Product[] = [];
   if ( handle ) {
-    const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, {hdl: handle, ...variables });
+    const variables = {
+      ...commonVariables,
+      hdl: handle,
+      sortKey: collectionSortConfig?.sortKey,
+      reverse: collectionSortConfig?.reverse
+    };
+    
+    const data: any = await shopifyFetch(GET_COLLECTION_WITH_PRODUCTS_QUERY, variables);
     products =  data.collection.products.edges.map((edge: any) => parseProduct(edge.node));
     
   } else {
+    const variables = {
+      ...commonVariables,
+      sortKey: productSortConfig?.sortKey,
+      reverse: productSortConfig?.reverse
+    };
     const data: any = await shopifyFetch(GET_PRODUCTS_QUERY, variables);
     products =  data.products.edges.map((edge: any) => parseProduct(edge.node));
   }

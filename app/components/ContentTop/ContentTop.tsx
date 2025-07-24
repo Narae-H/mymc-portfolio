@@ -5,7 +5,7 @@ export default function ContentTop(){
   const menus = [
     {
       title: 'New',
-      selected: true
+      selected: false
     },
     {
       title: 'Specials',
@@ -13,7 +13,7 @@ export default function ContentTop(){
     },
     {
       title: 'Meals',
-      selected: false
+      selected: true
     },
     {
       title: 'Snacks & Treats',

@@ -1,7 +1,13 @@
+import { BiSolidLeaf } from "react-icons/bi";
+import { FaPizzaSlice } from "react-icons/fa";
+import { GiAustralia, GiNoodles, GiTacos, GiTurban } from "react-icons/gi";
+import { IoScale } from "react-icons/io5";
+import { PiBarbellFill, PiGrainsFill } from "react-icons/pi";
+
 export const sortAndFilters = [
   {
     title: 'Sort',
-    key: 'sort',
+    paramKey: 'sort',
     type: 'radio',
     options: [
       { label: 'Top sellers', slug: 'top-sellers' },
@@ -19,23 +25,23 @@ export const sortAndFilters = [
   },
   {
     title: 'Preferences',
-    key: 'preferences',
+    paramKey: 'preferences',
     type: 'checkbox',
     options: [
-      { label: 'Low Calorie', slug: 'low-calorie' },
-      { label: 'Low Carb', slug: 'low-carb' },
-      { label: 'Muscle Building', slug: 'muscle-building' },
-      { label: 'Plant Based', slug: 'plant-based' },
-      { label: 'Italian', slug: 'italian' },
-      { label: 'Asian', slug: 'asian' },
-      { label: 'Aussie Classics', slug: 'aussie-classics' },
-      { label: 'Mexican', slug: 'mexican' },
-      { label: 'Indian', slug: 'indian' },
+      { label: 'Low Calorie', slug: 'low-calorie', icon: IoScale },
+      { label: 'Low Carb', slug: 'low-carb', icon: PiGrainsFill },
+      { label: 'Muscle Building', slug: 'muscle-building', icon: PiBarbellFill },
+      { label: 'Plant Based', slug: 'plant-based', icon: BiSolidLeaf },
+      { label: 'Italian', slug: 'italian', icon: FaPizzaSlice },
+      { label: 'Asian', slug: 'asian', icon: GiNoodles },
+      { label: 'Aussie Classics', slug: 'aussie-classics', icon: GiAustralia },
+      { label: 'Mexican', slug: 'mexican', icon: GiTacos },
+      { label: 'Indian', slug: 'indian', icon: GiTurban },
     ],
   },
   {
     title: 'Protein Type',
-    key: 'proteinType',
+    paramKey: 'proteinType',
     type: 'checkbox',
     options: [
       { label: 'Beef', slug: 'beef' },
@@ -49,7 +55,7 @@ export const sortAndFilters = [
   },
   {
     title: 'Carbs',
-    key: 'carbs',
+    paramKey: 'carbs',
     type: 'checkbox',
     options: [
       { label: '<20g', slug: 'lt20g' },
@@ -59,7 +65,7 @@ export const sortAndFilters = [
   },
   {
     title: 'Calories',
-    key: 'calories',
+    paramKey: 'calories',
     type: 'checkbox',
     options: [
       { label: '<400', slug: 'lt400' },
@@ -69,7 +75,7 @@ export const sortAndFilters = [
   },
   {
     title: 'Dietary',
-    key: 'dietary',
+    paramKey: 'dietary',
     type: 'checkbox',
     options: [
       { label: 'No Added Dairy', slug: 'no-added-dairy' },

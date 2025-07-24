@@ -1,6 +1,14 @@
 export type ShopifySortKey = 'TITLE' | 'PRICE' | 'CREATED_AT' | 'BEST_SELLING';
 
-export const SHOPIFY_SORT_CONFIG = {
+export const PRODUCT_SORT_CONFIG = {
+  'top-sellers': { sortKey: 'BEST_SELLING', reverse: false },
+  'new': { sortKey: 'CREATED_AT', reverse: true },
+  'price-low-to-high': { sortKey: 'PRICE', reverse: false },
+  'price-high-to-low': { sortKey: 'PRICE', reverse: true },
+  'name-az': { sortKey: 'TITLE', reverse: false },
+} as const;
+
+export const COLLECTION_SORT_CONFIG = {
   'top-sellers': { sortKey: 'BEST_SELLING', reverse: false },
   'new': { sortKey: 'CREATED', reverse: true },
   'price-low-to-high': { sortKey: 'PRICE', reverse: false },
@@ -18,5 +26,6 @@ export const METAFIELD_SORT_CONFIG = {
 } as const;
 
 export type SortKeyValues =
-  | keyof typeof SHOPIFY_SORT_CONFIG
+  | keyof typeof PRODUCT_SORT_CONFIG
+  | keyof typeof COLLECTION_SORT_CONFIG
   | keyof typeof METAFIELD_SORT_CONFIG;

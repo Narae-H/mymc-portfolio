@@ -1,6 +1,6 @@
 import { DEFAULT_FILTER_VALUES } from "@/data/sortAndFilters";
 import { SortKeyValues } from "@/data/sortConfig";
-import { isMetafieldSortKey, isShopifySortKey } from "@/lib/utils/typeGuards";
+import { isValidSortKey } from "@/lib/utils/typeGuards";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SortState {
@@ -16,7 +16,7 @@ const sortSlice = createSlice({
   initialState,
   reducers: {
     setSort(state, action: PayloadAction<string | undefined>) {
-      if (action.payload && (isShopifySortKey(action.payload) || isMetafieldSortKey(action.payload)) ) {
+      if (action.payload && (isValidSortKey(action.payload)) ) {
         state.sortBy = action.payload;
       }
     },

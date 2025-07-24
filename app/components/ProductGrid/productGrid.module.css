@@ -29,3 +29,25 @@
   gap: 40px; 
   padding: 16px 0;
 }
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.emptyTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.emptyMessage {
+  font-size: 1.3rem;
+  font-weight: 400;
+  max-width: 400px;
+}
