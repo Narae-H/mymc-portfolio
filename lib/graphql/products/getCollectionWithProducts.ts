@@ -1,9 +1,9 @@
 export const GET_COLLECTION_WITH_PRODUCTS_QUERY = `
-  query GetCollectionWithProducts($hdl: String!) {
+  query GetCollectionWithProducts($hdl: String!, $first: Int = 100, $cursor: String, $sortKey: ProductCollectionSortKeys, $reverse: Boolean) {
     collection(handle: $hdl) {
       id
       title
-      products(first: 20) { 
+      products(first: $first, after: $cursor, sortKey: $sortKey, reverse: $reverse) { 
         edges { 
           node {
             id
@@ -35,7 +35,10 @@ export const GET_COLLECTION_WITH_PRODUCTS_QUERY = `
               { namespace: "meal", key: "type" },
               { namespace: "details", key: "ingredients" },
               { namespace: "details", key: "nutritional_info" },
-              { namespace: "details", key: "instructions" }
+              { namespace: "details", key: "instructions" },
+              { namespace: "filter", key: "protein_type" },
+              { namespace: "filter", key: "preferences" },
+              { namespace: "filter", key: "dietary" }
             ]) {
               namespace
               key

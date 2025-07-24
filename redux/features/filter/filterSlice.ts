@@ -7,6 +7,13 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {  
+    setFilters(state, action: PayloadAction<FilterValues>) {
+      state.selectedFilters = action.payload;
+      state.selectedFilterCount = Object.values(action.payload).reduce(
+        (acc, arr) => acc + arr.length,
+        0
+      );
+    },
     toggleFilter(state, action: PayloadAction<{ key: keyof FilterValues; value: string }>) {
       const { key, value } = action.payload;
       const currentList = state.selectedFilters[key];
@@ -32,5 +39,5 @@ const filterSlice = createSlice({
   },
 });
 
-export const { toggleFilter, clearFilters } = filterSlice.actions;
+export const { setFilters, toggleFilter, clearFilters } = filterSlice.actions;
 export default filterSlice.reducer;

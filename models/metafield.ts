@@ -1,4 +1,4 @@
-export type Metafield = {
+export interface Metafield {
   namespace: string;
   key: string;
   value: string | null;

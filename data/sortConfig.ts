@@ -1,32 +1,31 @@
-export type ValidSortKey = keyof typeof SHOPIFY_SORT_CONFIG | keyof typeof METAFIELD_SORT_CONFIG;
-
 export type ShopifySortKey = 'TITLE' | 'PRICE' | 'CREATED_AT' | 'BEST_SELLING';
-export const SHOPIFY_SORT_CONFIG = {
-  'Top sellers': { sortKey: 'BEST_SELLING', reverse: false },
-  'New': { sortKey: 'CREATED_AT', reverse: true },
-  'Price (Low to High)': { sortKey: 'PRICE', reverse: false },
-  'Price (High to Low)': { sortKey: 'PRICE', reverse: true },
-  'Name A-Z': { sortKey: 'TITLE', reverse: false },
+
+export const PRODUCT_SORT_CONFIG = {
+  'top-sellers': { sortKey: 'BEST_SELLING', reverse: false },
+  'new': { sortKey: 'CREATED_AT', reverse: true },
+  'price-low-to-high': { sortKey: 'PRICE', reverse: false },
+  'price-high-to-low': { sortKey: 'PRICE', reverse: true },
+  'name-az': { sortKey: 'TITLE', reverse: false },
 } as const;
 
-export type MetafieldSortDirection = 'asc' | 'desc';
-export const METAFIELD_SORT_CONFIG = {
-  'Calories (Low to High)': {
-    key: 'calories', direction: 'asc'
-  }, 
-  'Calories (High to Low)': {
-    key: 'calories', direction: 'desc'
-  }, 
-  'Protein (Low to High)': {
-    key: 'protein', direction: 'asc'
-  }, 
-  'Protein (High to Low)': {
-    key: 'protein', direction: 'desc'
-  }, 
-  'Carbs (Low to High)': {
-    key: 'carbs', direction: 'asc'
-  }, 
-  'Carbs (High to Low)': {
-    key: 'carbs', direction: 'desc'
-  }
+export const COLLECTION_SORT_CONFIG = {
+  'top-sellers': { sortKey: 'BEST_SELLING', reverse: false },
+  'new': { sortKey: 'CREATED', reverse: true },
+  'price-low-to-high': { sortKey: 'PRICE', reverse: false },
+  'price-high-to-low': { sortKey: 'PRICE', reverse: true },
+  'name-az': { sortKey: 'TITLE', reverse: false },
 } as const;
+
+export const METAFIELD_SORT_CONFIG = {
+  'calories-low-to-high': { key: 'calories', direction: 'asc' },
+  'calories-high-to-low': { key: 'calories', direction: 'desc' },
+  'protein-low-to-high': { key: 'protein', direction: 'asc' },
+  'protein-high-to-low': { key: 'protein', direction: 'desc' },
+  'carbs-low-to-high': { key: 'carbs', direction: 'asc' },
+  'carbs-high-to-low': { key: 'carbs', direction: 'desc' },
+} as const;
+
+export type SortKeyValues =
+  | keyof typeof PRODUCT_SORT_CONFIG
+  | keyof typeof COLLECTION_SORT_CONFIG
+  | keyof typeof METAFIELD_SORT_CONFIG;
