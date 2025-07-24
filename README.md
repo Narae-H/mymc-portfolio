@@ -3,6 +3,7 @@
 🔗Link: [https://mymc-portfolio.vercel.app](https://mymc-portfolio.vercel.app)  
 
 <br/>
+
 🚨 **Disclaimer**  
 This project is for **portfolio purposes only**. All content, including images and text, is sourced from [My Muscle Chef](https://www.mymusclechef.com/) and remains the property of its rightful owner.  
 The project is not affiliated with or endorsed by My Muscle Chef.  
