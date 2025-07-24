@@ -1,15 +1,12 @@
 # My Muscle Chef Clone (Portfolio Project)
-🚨 **Disclaimer**  
-This project is for **portfolio purposes only**. All content, including images and text, is sourced from [My Muscle Chef](https://www.mymusclechef.com/) and remains the property of its rightful owner.  
-The project is not affiliated with or endorsed by My Muscle Chef.  
-**All assets will be removed upon completion of portfolio review.**
-
-<br/>
-
 <img width="1918" height="910" alt="portfolio_img" src="https://github.com/user-attachments/assets/3bc1785d-0e37-4c2f-98ca-d6f15c4fd8ff" />
 🔗Link: [https://mymc-portfolio.vercel.app](https://mymc-portfolio.vercel.app)  
 
 <br/>
+🚨 **Disclaimer**  
+This project is for **portfolio purposes only**. All content, including images and text, is sourced from [My Muscle Chef](https://www.mymusclechef.com/) and remains the property of its rightful owner.  
+The project is not affiliated with or endorsed by My Muscle Chef.  
+**All assets will be removed upon completion of portfolio review.**
 
 # Introduction
 This project was created as part of my portfolio to proactively address gaps in my current technical skill set. It is a partial clone of [My Muscle Chef](https://www.mymusclechef.com/menu/meals?sort=featured), built to demonstrate my ability to work with modern frontend technologies and integrate with external APIs.
