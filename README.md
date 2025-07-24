@@ -72,7 +72,7 @@ mymc-portfolio
 │   └── 📄 StoreProvider.tsx           # Redux provider component         
 │
 ├── 📁 data                            # Static data used in components
-│   └── 📄 filters.ts                  # Sidebar menu data (e.g., meal categories)
+│   └── 📄 sortAndFilters.ts           # Sidebar menu data (e.g., meal categories)
 │
 ├── 📁 lib                             # Pure logic helpers (e.g., parsing, formatting, tree builders)
 │   ├── 📁 graphql                     # GraphQL query definitions for Shopify
