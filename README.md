@@ -4,7 +4,6 @@
 🔗Link: [mymc-portfolio.vercel.app](https://mymc-portfolio.vercel.app/)   
 
 <br/>
-<br/>
 
 🚨 **Disclaimer**  
 This project is for **portfolio purposes only**. All content, including images and text, is sourced from [My Muscle Chef](https://www.mymusclechef.com/) and remains the property of its rightful owner.  
