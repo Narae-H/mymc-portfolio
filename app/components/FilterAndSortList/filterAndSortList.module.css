@@ -1,9 +1,24 @@
+/* Common */
 .list {
   list-style: none;
   padding: 0;
   margin-bottom: 24px;
 }
 
+.sort .heading1 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.sort .heading1 span {
+  font-size: 16px;
+  color: var(--color-grey);
+  font-weight: 500;
+}
+
+
+/* FilterListGroup.tsx */
 .list li {
   font-size: 16px;
   color: var(--color-black);
@@ -13,6 +28,7 @@
 .list li label span {
   padding-left: .5rem;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .sort button {
@@ -20,13 +36,85 @@
   padding-left:0;
 }
 
-.sort .heading1 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 8px;
+
+/* FilterIconGrid.tsx */
+.filterIconGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 1rem 0;
 }
-.sort .heading1 span {
-  font-size: 16px;
-  color: var(--color-grey);
-  font-weight: 500;
+.filterIconGrid .gridItem {
+  width: calc(50% - 6px); 
+  box-sizing: border-box;
+}
+.filterIconGrid .gridItem button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  border: 1px solid var(--color-black);
+  border-radius: 5px;
+  background-color: var(--bg-white);
+  cursor: pointer;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.filterIconGrid .gridItem button .buttonLabel {
+  width: 55%;
+}
+.filterIconGrid .gridItem button:hover {
+  background-color: var(--bg-grey);
+  color: var(--color-black);
+}
+.filterIconGrid .gridItem.selected button {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+
+/* FilterToggleSwitch.tsx */
+.filterToggleSwitch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1rem 0;
+  font-size: 14px;
+}
+.filterToggleSwitch .gridItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+.filterToggleSwitch .gridItem .switchWrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 44px;
+  height: 22px;
+  padding: 1px;
+  border-radius:14px;
+  background-color: var(--bg-grey-300);
+  cursor: pointer;
+  transition: justify-content 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.5s ease-out;
+}
+.filterToggleSwitch .gridItem .switchWrapper.selected {
+  background-color: var(--bg-black);
+  justify-content: right;
+}
+.filterToggleSwitch .gridItem .switchWrapper .switch {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--bg-white);
+}
+
+.filterToggleSwitch .warning {
+  padding: 0.5rem 0;
+  font-size: 10px;
+  color: var(--color-grey)
 }

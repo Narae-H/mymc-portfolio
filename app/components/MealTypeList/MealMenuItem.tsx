@@ -6,7 +6,7 @@ import Link from 'next/link';
 import styles from '@/app/components/MealTypeList/mealTypeList.module.css'
 import DropdownToggle from '@/app/components/DropdownToggle/DropdownToggle';
 import { MealType } from '@/models/meal';
-import { getLastPathSegment } from '@/lib/utils/url'
+import { getLastPathSegment } from '@/lib/utils/urlHelpers'
 
 interface Props {
   mealType: MealType;
