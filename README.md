@@ -1,7 +1,7 @@
 # My Muscle Chef Clone (Portfolio Project)
 <img width="1918" height="910" alt="portfolio_img" src="https://github.com/user-attachments/assets/3bc1785d-0e37-4c2f-98ca-d6f15c4fd8ff" />
-🔗Link: [https://mymc-portfolio.vercel.app](https://mymc-portfolio.vercel.app)  
-
+🔗Link: [mymc-portfolio.vercel.app](https://mymc-portfolio.vercel.app)   
+<br/>
 <br/>
 
 🚨 **Disclaimer**  
