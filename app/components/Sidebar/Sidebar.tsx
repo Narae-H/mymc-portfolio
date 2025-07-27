@@ -1,6 +1,6 @@
 import { MealTypeList } from '@/app/components/MealTypeList/MealTypeList';
-import { FilterAndSortList } from '../FilterAndSortList/FilterAndSortList';
 import styles from '@/app/components/Sidebar/sidebar.module.css';
+import { FilterAndSortList } from '../FilterAndSortList/FilterAndSortList';
 
 export default function Sidebar() {
   return (

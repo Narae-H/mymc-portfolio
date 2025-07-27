@@ -1,11 +1,11 @@
 
 import { BsChatLeftDotsFill } from "react-icons/bs";
+import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
 import { VscAccount } from "react-icons/vsc";
-import { IoSearchOutline } from "react-icons/io5";
-import { IoCartOutline } from "react-icons/io5";
 
 import Button from '@/app/components/Button/Button';
-import styles from '@/app/components/StickyHeader/stickyHeader.module.css'
+import styles from '@/app/components/StickyHeader/stickyHeader.module.css';
+import Link from "next/link";
 
 
 export default function StickyHeader() {
@@ -17,8 +17,8 @@ export default function StickyHeader() {
         </a>
         <div className={styles.headerMenus}>
           <nav className={styles.nav}>
-            <a href="/">Full Menu</a>
-            <a href="#">Meal Plans</a>
+            <Link href="/">All Meals</Link>
+            <Link href="#">Meal Plans</Link>
           </nav>
           <div className={styles.buttonWrapper}>
             <Button variant="btn-red">Start Your order</Button>
