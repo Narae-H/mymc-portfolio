@@ -24,6 +24,8 @@ export const GET_COLLECTION_WITH_PRODUCTS_QUERY = `
                     amount
                     currencyCode
                   }
+                  weight
+                  weightUnit
                 }
               }
             }

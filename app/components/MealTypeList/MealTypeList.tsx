@@ -1,6 +1,7 @@
 import styles from '@/app/components/MealTypeList/mealTypeList.module.css';
 import MealMenuItem from '@/app/components/MealTypeList/MealMenuItem';
 import { fetchProductMealTypesTree } from '@/api/products';
+import Link from 'next/link';
 
 export async function MealTypeList() {
   const mealTypes = await fetchProductMealTypesTree();
@@ -9,7 +10,7 @@ export async function MealTypeList() {
     <div className={styles.mealTypes}>
       <ul className={styles.list}>
         <li>
-          <a href="/">All Meals</a>
+          <Link href="/">All Meals</Link>
         </li>
         {mealTypes.map((mealType) => (
           <MealMenuItem
