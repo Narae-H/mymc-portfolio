@@ -60,6 +60,8 @@ export function parseProduct(raw: any): Product {
   product.imageAlt = imageNode?.altText || raw.title || '';
   product.price = safeParseNumber(variantNode?.price?.amount);
   product.currency = variantNode?.price?.currencyCode || 'AUD';
+  product.weight = variantNode?.weight || 0;
+  product.weightUnit = variantNode?.weightUnit || 0;
   product.proteinType = parseList(metafieldsMap['filter.protein_type']);
   product.preferences = [
     ...(parseList(metafieldsMap['filter.preferences'])),

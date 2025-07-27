@@ -17,6 +17,8 @@ export interface Product {
   imageAlt: string;
   price: number;
   currency: string;
+  weight: number;
+  weightUnit: number;
   proteinType: string[];
   preferences: string[];
   dietary: string[];
@@ -39,6 +41,8 @@ export const EmptyProductValue: Product = {
   imageAlt: '',
   price: 0,
   currency: '',
+  weight: 0,
+  weightUnit: 0,
   proteinType: [],
   preferences: [],
   dietary: []
